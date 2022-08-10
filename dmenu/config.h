@@ -15,8 +15,8 @@ static const char col_obg[]    = "#103a41"; //unify bg color
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
 	[SchemeNorm] = { "#bbbbbb", col_bgr },
-	[SchemeSel] = { "#eeeeee", col_acc },
- 	[SchemeSelHighlight] = { col_high, col_acc },
+	[SchemeSel] = { col_acc, col_bgr },
+ 	[SchemeSelHighlight] = { col_high, col_bgr },
  	[SchemeNormHighlight] = { col_high, col_bgr },
 	[SchemeOut] = { "#000000", col_bgr },
  	[SchemeOutHighlight] = { col_high, col_bgr },
