@@ -20,36 +20,27 @@ static const char col_beef[]        = "#BEEEEF";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_backg, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_main,  col_main  },
+	[SchemeSel]  = { col_main,  col_backg, col_main  },
 };
 
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "", "", "", "力" };
-
-static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
-static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
-static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
-
-static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
-static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
-static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "mpv",	  NULL,		  NULL,		  0,			1,			 -1 },
-	{ "USC-Game", NULL,		  NULL,		  0,			0,			 -1 },
+	/* class      instance    title       tags mask     isfloating   centerWindow?    monitor */
+	{ "Gimp",     NULL,       NULL,       0,            1,           0,               -1 },
+	{ "Firefox",  NULL,       NULL,       0,	        0,           0,               -1 },
+	{ "mpv",	  NULL,		  NULL,		  0,			1,			 1,               -1 },
+	{ "USC-Game", NULL,		  NULL,		  0,			0,			 0,               -1 },
+	{ "st", 	  NULL,		  NULL,		  0,			0,			 1,               -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -74,13 +65,13 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_main, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont , "-x", "5", "-y", "5", "-z", "512" };
 static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
 
 #include <limits.h>
-#define XK_ANY_MOD UINT_MAX
+#define XK_ANY_MOD 0
 // #include <X11/XF86keysym.h>
 
 static Key keys[] = {
@@ -124,9 +115,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("$HOME/.src/wm/screenshot.sh") },
 	/* THE HEX VALUES ARE DEFINED IN XF86 KEYSYM BUT THEY DONT WORK SO HERE I AM TYPING THEM MANUALLY. IDK THEY MIGHT WORK */
-	// { XK_ANY_MOD,					0x1008FF11,spawn,SHCMD("pamixer -d 5") }, // Decrease vol by 5%
-	// { XK_ANY_MOD,					0x1008FF13,spawn,SHCMD("pamixer -i 5") }, // Increase vol by 5%
-	// { XK_ANY_MOD,					0x1008FF12,spawn,SHCMD("pamixer -t") },   // Toggle mute
+	{ XK_ANY_MOD,					0x1008FF11,spawn,SHCMD("pamixer -d 5") }, // Decrease vol by 5%
+	{ XK_ANY_MOD,					0x1008FF13,spawn,SHCMD("pamixer -i 5") }, // Increase vol by 5%
+	{ XK_ANY_MOD,					0x1008FF12,spawn,SHCMD("pamixer -t") },   // Toggle mute
 };
 
 /* button definitions */
