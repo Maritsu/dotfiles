@@ -4,9 +4,9 @@ static const char *group = "nobody"; // use "nobody" for arch
 
 static const char *colorname[NUMCOLS] = {
 	#if DWM_LOGO_PATCH && !BLUR_PIXELATED_SCREEN_PATCH
-	[BACKGROUND] =  "black", /* after initialization */
+	[BACKGROUND] =  "#242a32", /* after initialization */
 	#endif // DWM_LOGO_PATCH
-	[INIT] =   "#242a32",     /* after initialization */
+	[INIT] =   "#bbbbbb",     /* after initialization */
 	[INPUT] =  "#845ae3",   /* during input */
 	[FAILED] = "#beeeef",   /* wrong password */
 	#if CAPSCOLOR_PATCH
