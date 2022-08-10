@@ -20,7 +20,7 @@ static const char col_beef[]        = "#BEEEEF";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_backg, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_main,  col_main  },
+	[SchemeSel]  = { col_main,  col_backg, col_main  },
 };
 
 /* tagging */
@@ -71,7 +71,7 @@ static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
 
 #include <limits.h>
-#define XK_ANY_MOD UINT_MAX
+#define XK_ANY_MOD 0
 // #include <X11/XF86keysym.h>
 
 static Key keys[] = {
@@ -115,9 +115,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("$HOME/.src/wm/screenshot.sh") },
 	/* THE HEX VALUES ARE DEFINED IN XF86 KEYSYM BUT THEY DONT WORK SO HERE I AM TYPING THEM MANUALLY. IDK THEY MIGHT WORK */
-	// { XK_ANY_MOD,					0x1008FF11,spawn,SHCMD("pamixer -d 5") }, // Decrease vol by 5%
-	// { XK_ANY_MOD,					0x1008FF13,spawn,SHCMD("pamixer -i 5") }, // Increase vol by 5%
-	// { XK_ANY_MOD,					0x1008FF12,spawn,SHCMD("pamixer -t") },   // Toggle mute
+	{ XK_ANY_MOD,					0x1008FF11,spawn,SHCMD("pamixer -d 5") }, // Decrease vol by 5%
+	{ XK_ANY_MOD,					0x1008FF13,spawn,SHCMD("pamixer -i 5") }, // Increase vol by 5%
+	{ XK_ANY_MOD,					0x1008FF12,spawn,SHCMD("pamixer -t") },   // Toggle mute
 };
 
 /* button definitions */
