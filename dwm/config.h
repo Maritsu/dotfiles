@@ -3,7 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int gappx     = 4;        /* gap pixel between windows */
-static const unsigned int snap      = 8;       /* snap pixel */
+static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = gappx;    /* vertical padding of bar */
@@ -21,6 +21,13 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_backg, col_gray2 },
 	[SchemeSel]  = { col_main,  col_backg, col_main  },
+};
+
+static const char *const autostart[] = {
+	"sh", "-c", "~/.fehbg", NULL,
+	"autorandr", "--change", NULL,
+	"sh", "-c", "~/.src/wm/batstat.sh", "&", NULL,
+	NULL /* terminate */
 };
 
 /* tagging */
@@ -47,9 +54,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "ﱖ",      tile },    /* first entry is default */
-	{ "缾",      NULL },    /* no layout function means floating behavior */
-	{ "",      monocle },
+	{ "[]=",      tile },    /* first entry is default */
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[M]",      monocle },
 };
 
 /* key definitions */
@@ -65,7 +72,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont , "-x", "4", "-y", "4", "-z", "512" };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont , "-x", "5", "-y", "5", "-z", "512" };
 static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
