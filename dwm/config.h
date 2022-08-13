@@ -24,8 +24,8 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = {
-	"sh", "-c", "~/.fehbg", NULL,
 	"autorandr", "--change", NULL,
+	"sh", "-c", "~/.fehbg", NULL,
 	"sh", "-c", "~/.src/wm/batstat.sh", "&", NULL,
 	NULL /* terminate */
 };
@@ -38,12 +38,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   centerWindow?    monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           0,               -1 },
-	{ "Firefox",  NULL,       NULL,       0,	        0,           0,               -1 },
-	{ "mpv",	  NULL,		  NULL,		  0,			1,			 1,               -1 },
-	{ "USC-Game", NULL,		  NULL,		  0,			0,			 0,               -1 },
-	{ "st", 	  NULL,		  NULL,		  0,			0,			 1,               -1 },
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",  NULL,       NULL,       0,	        0,           -1 },
+	{ "mpv",	  NULL,		  NULL,		  0,			1,			 -1 },
+	{ "USC-Game", NULL,		  NULL,		  0,			0,			 -1 },
+	{ "st", 	  NULL,		  NULL,		  0,			0,			 -1 },
 };
 
 /* layout(s) */

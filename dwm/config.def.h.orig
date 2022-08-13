@@ -23,6 +23,13 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_main,  col_backg, col_main  },
 };
 
+static const char *const autostart[] = {
+	"sh", "-c", "~/.fehbg", NULL,
+	"autorandr", "--change", NULL,
+	"sh", "-c", "~/.src/wm/batstat.sh", "&", NULL,
+	NULL /* terminate */
+};
+
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "", "", "", "力" };
 
