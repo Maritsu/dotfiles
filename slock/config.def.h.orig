@@ -13,12 +13,3 @@ static const int failonclear = 1;
 
 /* time in seconds before the monitor shuts down */
 static const int monitortime = 5;
-
-/* default message */
-static const char * message = "$(cowsay \"$(fortune)\" | \\lolcat -ft)";
-
-/* text color */
-static const char * text_color = "#ffffff";
-
-/* text size (must be a valid size) */
-static const char * font_name = "Hackx12";
