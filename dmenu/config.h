@@ -11,7 +11,6 @@ static const char *prompt      = NULL;      /* -p  option; prompt to the left of
 static const char col_acc[]    = "#845ae3"; //unify accent color
 static const char col_high[]   = "#beeeef"; //unify highlight color
 static const char col_bgr[]    = "#242a32"; //unify bg color
-static const char col_obg[]    = "#103a41"; //unify bg color
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
 	[SchemeNorm] = { "#bbbbbb", col_bgr },
