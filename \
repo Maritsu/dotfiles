@@ -19,19 +19,21 @@ while true; do
 
     # If battery full and not already warned about that
     if [ "$last" != "FULL" ] && [ "$status" = "Full" ]; then
-	  dunstify -u low -a batstat -r 101 "Battery full" "Current state: $capacity%"
+	  dunstify -u low -a batstat -r 101 "" "Battery full"
       last="FULL"
     fi
 
     # If low and discharging
-    if [ "$last" != "LOW" ] && [ "$status" = "Discharging" ] && [ $capacity -le $low ]; then
-	  dunstify -a batstat -r 101 "Battery low" "Current state: $capacity%"
+    if [ "$last" != "LOW" ] && [ "$status" = "Discharging" ] && \
+       [ $capacity -le $low ]; then
+	  dunstify -a batstat -r 102 "Battery low" "Current state: $capacity%"
       last=LOW
     fi
 
     # If critical and discharging
     if [ "$status" = "Discharging" ] && [ $capacity -le $critical ]; then
-	  dunstify -u critical -a batstat -r 101 "Battery critical" "Current state: $capacity%"
+      notify-send -u critical "Battery critical: $capacity%"
+	  dunstify -u critical -a batstat -r 102 "Battery critical" "Current state: $capacity%"
       last=CRITICAL
     fi
   fi
