@@ -65,12 +65,12 @@ static const char unknown_str[] = "-";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ separator, " ",				NULL },
-	{ run_command, "[墳 %s] ",		"pamixer --get-volume-human" },
-	{ wifi_perc, "[ %s%%] ",		"wlan0" },
-	{ cpu_perc, "[ CPU %s%% ",		NULL },
-	{ ram_perc, "RAM %s%%] ",		NULL },
-	{ battery_state, "[%s ",		"BAT0" },
-	{ battery_perc, "%s%%] ",		"BAT0" },
-	{ datetime, "[ %s]",			"%d/%m/%y %T" },
+	{ separator, "",				NULL },
+	{ run_command, " 墳 %s ",		"pamixer --get-volume-human" },
+	{ wifi_perc, "|  %s%% ",		"wlan0" },
+	{ cpu_perc, "|  CPU %s%%",		NULL },
+	{ ram_perc, " RAM %s%% ",		NULL },
+	{ battery_state, "| %s ",		"BAT0" },
+	{ battery_perc, "%s%% ",		"BAT0" },
+	{ datetime, "|  %s",			"%d/%m/%y %T" },
 };
