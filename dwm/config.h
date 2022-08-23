@@ -80,8 +80,8 @@ static const char *killcmd[]  = { "pkill", "dwm", NULL };
  * Hex values taken from XF86 keysym
  */
 #define XK_ANY_MOD 0 // idk it works
-#define XK_VolUp 0x1008FF11
-#define XK_VolDown 0x1008FF13
+#define XK_VolUp 0x1008FF13
+#define XK_VolDown 0x1008FF11
 #define XK_VolM 0x1008FF12
 
 static Key keys[] = {
