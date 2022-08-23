@@ -76,9 +76,13 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
 
-#include <limits.h>
-#define XK_ANY_MOD 0
-// #include <X11/XF86keysym.h>
+/* Volume control buttons
+ * Hex values taken from XF86 keysym
+ */
+#define XK_ANY_MOD 0 // idk it works
+#define XK_VolUp 0x1008FF11
+#define XK_VolDown 0x1008FF13
+#define XK_VolM 0x1008FF12
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -120,10 +124,9 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_q,      spawn,          {.v = killcmd } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("$HOME/.src/wm/screenshot.sh") },
-	/* THE HEX VALUES ARE DEFINED IN XF86 KEYSYM BUT THEY DONT WORK SO HERE I AM TYPING THEM MANUALLY. IDK THEY MIGHT WORK */
-	{ XK_ANY_MOD,					0x1008FF11,spawn,SHCMD("pamixer -d 5") }, // Decrease vol by 5%
-	{ XK_ANY_MOD,					0x1008FF13,spawn,SHCMD("pamixer -i 5") }, // Increase vol by 5%
-	{ XK_ANY_MOD,					0x1008FF12,spawn,SHCMD("pamixer -t") },   // Toggle mute
+	{ XK_ANY_MOD,					XK_VolUp,  spawn,		   SHCMD("$HOME/.src/wm/volume.sh 5") }, // Decrease vol by 5%
+	{ XK_ANY_MOD,					XK_VolDown,spawn,		   SHCMD("$HOME/.src/wm/volume.sh -5") }, // Increase vol by 5%
+	{ XK_ANY_MOD,					XK_VolM,   spawn,          SHCMD("$HOME/.src/wm/volume.sh 0") },   // Toggle mute
 };
 
 /* button definitions */
