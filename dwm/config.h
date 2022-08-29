@@ -8,8 +8,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = gappx;    /* vertical padding of bar */
 static const int sidepad            = gappx;    /* horizontal padding of bar */
-static const char *fonts[]          = { "Symbols Nerd Font:size=12", "Iosevka:size=12" };
-static const char dmenufont[]       = "Iosevka:size=12";
+static const char *fonts[]          = { "Symbols Nerd Font:size=12", "Hack Nerd Font:size=12" };
+// static const char dmenufont[]       = "Iosevka:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -71,7 +71,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", "0", "-fn", dmenufont , "-x", "5", "-y", "5", "-z", "512" }; //FORCE MONITOR 0
+static const char *dmenucmd[] = { "dmenu_run", "-m", "0", /*"-fn", dmenufont ,*/ "-x", "5", "-y", "5", "-z", "512" }; //FORCE MONITOR 0
 static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
