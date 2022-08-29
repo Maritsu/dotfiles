@@ -8,8 +8,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = gappx;    /* vertical padding of bar */
 static const int sidepad            = gappx;    /* horizontal padding of bar */
-static const char *fonts[]          = { "Hack:size=12", "Symbols Nerd Font:size=12" };
-static const char dmenufont[]       = "Hack:size=12";
+static const char *fonts[]          = { /*"Symbols Nerd Font:size=12",*/ "Hack Nerd Font:size=10" };
+// static const char dmenufont[]       = "Iosevka:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -25,7 +25,6 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
 	"sh", "-c", "~/.fehbg", NULL,
-	"autorandr", "--change", NULL,
 	"sh", "-c", "~/.src/wm/batstat.sh", "&", NULL,
 	NULL /* terminate */
 };
@@ -38,12 +37,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   centerWindow?    monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           0,               -1 },
-	{ "Firefox",  NULL,       NULL,       0,	        0,           0,               -1 },
-	{ "mpv",	  NULL,		  NULL,		  0,			1,			 1,               -1 },
-	{ "USC-Game", NULL,		  NULL,		  0,			0,			 0,               -1 },
-	{ "st", 	  NULL,		  NULL,		  0,			0,			 1,               -1 },
+	/* class      instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",  NULL,       NULL,       0,	        0,           -1 },
+	{ "mpv",	  NULL,		  NULL,		  0,			1,			 -1 },
+	{ "USC-Game", NULL,		  NULL,		  0,			0,			 -1 },
+	{ "st", 	  NULL,		  NULL,		  0,			0,			 -1 },
 };
 
 /* layout(s) */
@@ -54,9 +53,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "",      tile },    /* first entry is default */
+	{ "",     NULL },    /* no layout function means floating behavior */
+	{ "",      monocle },
 };
 
 /* key definitions */
@@ -72,14 +71,18 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont , "-x", "5", "-y", "5", "-z", "512" };
+static const char *dmenucmd[] = { "dmenu_run", "-m", "0", /*"-fn", dmenufont ,*/ "-x", "5", "-y", "5", "-z", "512" }; //FORCE MONITOR 0
 static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
 
-#include <limits.h>
-#define XK_ANY_MOD 0
-// #include <X11/XF86keysym.h>
+/* Volume control buttons
+ * Hex values taken from XF86 keysym
+ */
+#define XK_ANY_MOD 0 // idk it works
+#define XK_VolUp 0x1008FF13
+#define XK_VolDown 0x1008FF11
+#define XK_VolM 0x1008FF12
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -121,10 +124,9 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_q,      spawn,          {.v = killcmd } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("$HOME/.src/wm/screenshot.sh") },
-	/* THE HEX VALUES ARE DEFINED IN XF86 KEYSYM BUT THEY DONT WORK SO HERE I AM TYPING THEM MANUALLY. IDK THEY MIGHT WORK */
-	{ XK_ANY_MOD,					0x1008FF11,spawn,SHCMD("pamixer -d 5") }, // Decrease vol by 5%
-	{ XK_ANY_MOD,					0x1008FF13,spawn,SHCMD("pamixer -i 5") }, // Increase vol by 5%
-	{ XK_ANY_MOD,					0x1008FF12,spawn,SHCMD("pamixer -t") },   // Toggle mute
+	{ XK_ANY_MOD,					XK_VolUp,  spawn,		   SHCMD("$HOME/.src/wm/volume.sh 5") }, // Decrease vol by 5%
+	{ XK_ANY_MOD,					XK_VolDown,spawn,		   SHCMD("$HOME/.src/wm/volume.sh -5") }, // Increase vol by 5%
+	{ XK_ANY_MOD,					XK_VolM,   spawn,          SHCMD("$HOME/.src/wm/volume.sh 0") },   // Toggle mute
 };
 
 /* button definitions */
