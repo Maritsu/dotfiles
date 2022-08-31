@@ -14,6 +14,8 @@ Personal dotfiles repository, updated every now and then idk
 - scrot
 - xrandr
 
+**NOTE** that everything in this repository is styled to fit the [`deus`](https://github.com/ajmwagar/vim-deus) color scheme.
+
 # What's inside?
 - ## DWM
 > *dwm is a dynamic window manager for X. It manages windows in tiled, monocle and floating layouts. All of the layouts can be applied dynamically, optimising the environment for the application in use and the task performed.*
