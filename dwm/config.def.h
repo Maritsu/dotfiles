@@ -1,21 +1,19 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 4;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = gappx;    /* vertical padding of bar */
-static const int sidepad            = gappx;    /* horizontal padding of bar */
-static const char *fonts[]          = { /*"Symbols Nerd Font:size=12",*/ "Hack Nerd Font:size=10" };
+static const char *fonts[]          = { "Hack Nerd Font:size=10" };
 // static const char dmenufont[]       = "Iosevka:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_backg[]       = "#242a32";
-static const char col_main[]        = "#845AE3";
+static const char col_main[]        = "#cc2a7a";
 static const char col_beef[]        = "#BEEEEF";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -31,6 +29,11 @@ static const char *const autostart[] = {
 
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "", "", "", "力" };
+
+static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -54,7 +57,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "",      tile },    /* first entry is default */
-	{ "",     NULL },    /* no layout function means floating behavior */
+	{ "",      NULL },    /* no layout function means floating behavior */
 	{ "",      monocle },
 };
 
@@ -71,7 +74,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", "0", /*"-fn", dmenufont ,*/ "-x", "5", "-y", "5", "-z", "512" }; //FORCE MONITOR 0
+static const char *dmenucmd[] = { "dmenu_run", "-m", "0", /*"-fn", dmenufont ,*/ "-p", "Run" }; //FORCE MONITOR 0
 static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };

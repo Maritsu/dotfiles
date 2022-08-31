@@ -33,7 +33,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 4x29
+    offset = 4x24
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -114,7 +114,7 @@
     # Set to 0 to disable.
     # A client can set the 'transient' hint to bypass this. See the rules
     # section for how to disable this if necessary
-    idle_threshold = 30
+    idle_threshold = 15
 
     ### Text ###
 

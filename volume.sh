@@ -17,7 +17,7 @@ fi
 newvol=$(pamixer --get-volume-human)
 
 if [[ newvol != "muted" ]]; then
-	dunstify -r 102 -a volstat -t 2500 "$device" "Volume: $newvol" &
+	dunstify -r 102 -a volstat -t 2500 "$device" -h int:value:$newvol
 else
-	dunstify -r 102 -a volstat -t 2500 "$device" "Muted" &
+	dunstify -r 102 -a volstat -t 2500 "$device" "Muted"
 fi

@@ -27,8 +27,6 @@ fi
 
 # Add all other monitors (autorandr -s <name>: new configs)
 autorandr -c
-# Composite manager (shadows, rounded corners, fades, etc.): ricing stuff
-picom -r 10 -o 0.5 --corner-radius 5 -D 1 -f -I 0.015 -O 0.015 -b &
 # Set X keymap to match language :) polska gurom
 # Change accordingly pls
 setxkbmap pl &
