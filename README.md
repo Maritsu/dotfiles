@@ -1,8 +1,7 @@
-# dotfiles  
-
-**THIS VERSION IS A WIP AND IS SUBJECT TO CHANGES.**
+# dotfiles
+ Personal dotfiles repository, updated every now and then idk
 ---
-Personal dotfiles repository, updated every now and then idk
+### **THIS VERSION IS A WIP AND IS SUBJECT TO CHANGES.**
 **This is the currently maintained dark mode version, the light version is available in the light branch, however it will not be updated.**
 
 # Dependencies
@@ -19,7 +18,7 @@ Personal dotfiles repository, updated every now and then idk
 # What's inside?
 - ## DWM
 > *dwm is a dynamic window manager for X. It manages windows in tiled, monocle and floating layouts. All of the layouts can be applied dynamically, optimising the environment for the application in use and the task performed.*
-### DETAILS:
+### DETAILS
 **MODKEY (Mod):** Super/Windows key
 Keybind|Action
 ---|---
@@ -45,7 +44,7 @@ Keybind|Action
 <kbd>Vol+</kbd>|Increase volume by 5
 <kbd>Vol-</kbd>|Increase volume by -5
 <kbd>VolMute</kbd>|Toggle mute
-### PATCHES:
+### PATCHES
 - coolautostart
 - fullgaps
 - preserveonrestart
@@ -56,7 +55,7 @@ Keybind|Action
 
 ## DMENU
 > *dmenu is a dynamic menu for X, originally designed for dwm. It manages large numbers of user-defined menu items efficiently.*
-### PATCHES:
+### PATCHES
 - caseinsensitive
 - highlight
 
@@ -64,7 +63,7 @@ Keybind|Action
 
 ## SLSTATUS
 > *slstatus is a status monitor for window managers that use WM_NAME or stdin to fill the status bar.*
-### ENTRIES:
+### ENTRIES
 - Volume (depends on pamixer)
 - Wi-Fi strength
 - CPU and RAM usage (in %)
@@ -75,11 +74,11 @@ Keybind|Action
 
 ## ST
 > *st is a simple terminal implementation for X.*  
-### DETAILS:
+### DETAILS
 **$TERM = "st"**
 **Tab length:** 4
 **Cursor shape:** Underline 
-### PATCHES:
+### PATCHES
 - anysize
 - dynamiccursorcolor
 - font2
@@ -90,7 +89,7 @@ Keybind|Action
 
 ## SLOCK
 > *slock is a simple X display locker.*
-### PATCHES:
+### PATCHES
 - backgroundimage
 - controlclear
 - dpms
@@ -98,19 +97,11 @@ Keybind|Action
 ---
 
 ## DUNSTRC
-> *Configuration file for dunst*
+> *Configuration file for dunst*  
 **To be copied/symlinked by the user to ~/.config/dunst/dunstrc**
 
 ---
 
 ## XINITRC
-> *Xinit configuration file*
+> *Xinit configuration file*  
 **To be copied/symlinked to ~/.xinitrc**
-
----
-
-### when update?
-i have no idea tbh, but someday
-
-### screenshots :o
-![scr1](screenshots/1.png)
