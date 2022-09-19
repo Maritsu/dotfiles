@@ -1,11 +1,12 @@
 /* See LICENSE file for copyright and license details. */
+#include "../colors.h"
 
 /*
  * appearance
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Hack Nerd Font:size=9";
+static char *font = GC_tf/* "Hack Nerd Font:size=9" */;
 static int borderpx = 2;
 
 /*
@@ -68,6 +69,18 @@ static unsigned int blinktimeout = 800;
 static unsigned int cursorthickness = 2;
 
 /*
+ * 1: render most of the lines/blocks characters without using the font for
+ *    perfect alignment between cells (U2500 - U259F except dashes/diagonals).
+ *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
+ * 0: disable (render all U25XX glyphs normally from the font).
+ */
+const int boxdraw = 0;
+const int boxdraw_bold = 0;
+
+/* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
+const int boxdraw_braille = 0;
+
+/*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
@@ -92,9 +105,6 @@ char *termname = "st";
  *	stty tabs
  */
 unsigned int tabspaces = 4;
-
-/* bg opacity */
-float alpha = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -174,10 +184,6 @@ static uint forcemousemod = ShiftMask;
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument      release alt */
-	{ XK_ANY_MOD,           Button4, kscrollup,      {.i = 1} },
-	{ XK_ANY_MOD,           Button5, kscrolldown,    {.i = 1} },
-	{ ShiftMask,            Button4, kscrollup,      {.i = 5} },
-	{ ShiftMask ,           Button5, kscrolldown,    {.i = 5} },
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},           1 },
 	// { XK_ANY_MOD,           Button4, ttysend,        {.s = "\033[5;2~"}, 0, -1 },
 	// { XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
@@ -203,8 +209,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*

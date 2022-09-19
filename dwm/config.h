@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include "../colors.h"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -6,19 +7,19 @@ static const unsigned int gappx     = 4;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Hack Nerd Font:size=10" };
+static const char *fonts[]          = { /* "Hack Nerd Font:size=10" */ GC_fn };
 // static const char dmenufont[]       = "Iosevka:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_backg[]       = "#242a32";
-static const char col_main[]        = "#cc2a7a";
-static const char col_beef[]        = "#BEEEEF";
+// static const char col_backg[]       = GC_bg;
+// static const char col_main[]        = GC_ac;
+// static const char col_beef[]        = GC_hi;
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_backg, col_gray2 },
-	[SchemeSel]  = { col_main,  col_backg, col_main  },
+	/*               fg     bg     border   */
+	[SchemeNorm] = { GC_fg, GC_bg, col_gray2 },
+	[SchemeSel]  = { GC_fg,	GC_ac, GC_ac  },
 };
 
 static const char *const autostart[] = {

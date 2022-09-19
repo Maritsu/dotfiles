@@ -1,11 +1,12 @@
+#include "../colors.h"
 /* user and group to drop privileges to */
 static const char *user  = "nobody";
 static const char *group = "nobody";
 
 static const char *colorname[NUMCOLS] = {
-	[INIT] =   "#242a32",     /* after initialization */
-	[INPUT] =  "#beeeef",   /* during input */
-	[FAILED] = "#ff017e",   /* wrong password */
+	[INIT] =   GC_bg/* "#242a32" */,     /* after initialization */
+	[INPUT] =  GC_hi/* "#beeeef" */,   /* during input */
+	[FAILED] = GC_ac/* "#ff017e" */,   /* wrong password */
 };
 
 /* treat a cleared input like a wrong password (color) */
