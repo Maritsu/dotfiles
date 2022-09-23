@@ -1,0 +1,27 @@
+{
+	"messages": [
+		"Learn how to install a library for this header with vcpkg",
+		"Copy vcpkg command to install '{0}' to the clipboard",
+		"client not found",
+		"Open a folder first to select a configuration",
+		"Open a folder first to select a configuration provider",
+		"Open a folder first to edit configurations",
+		"Open a folder first to edit configurations",
+		"Open a folder first to edit configurations",
+		"The code analysis fix could not be applied because the document has changed.",
+		"Open a folder first to add to {0}"
+	],
+	"keys": [
+		"learn.how.to.install.a.library",
+		"copy.vcpkg.command",
+		"client.not.found",
+		"configuration.select.first",
+		"configuration.provider.select.first",
+		"edit.configurations.open.first",
+		"edit.configurations.open.first",
+		"edit.configurations.open.first",
+		"code.action.aborted",
+		"add.includepath.open.first"
+	],
+	"filePath": "src\\LanguageServer\\extension"
+}

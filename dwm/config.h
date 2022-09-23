@@ -18,8 +18,8 @@ static const char col_gray4[]       = "#eeeeee";
 // static const char col_beef[]        = GC_hi;
 static const char *colors[][3]      = {
 	/*               fg     bg     border   */
-	[SchemeNorm] = { GC_fg, GC_bg, col_gray2 },
-	[SchemeSel]  = { GC_fg,	GC_ac, GC_ac  },
+	[SchemeNorm] = { GC_fg, GC_bg, GC_bg  },
+	[SchemeSel]  = { GC_ac,	GC_bg, GC_ac  },
 };
 
 static const char *const autostart[] = {
@@ -29,12 +29,23 @@ static const char *const autostart[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "力" };
+static const char *tags[] = { "", "", "", "", "", "", "", "力" };
 
 static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
 static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
 static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
 static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
+
+static const char *tagsel[][2] = {
+	{ "#f38ba8", GC_bg },
+	{ "#fab387", GC_bg },
+	{ "#f9e2af", GC_bg },
+	{ "#a6e3a1", GC_bg },
+	{ "#89dceb", GC_bg },
+	{ "#89b4fa", GC_bg },
+	{ "#b4befe", GC_bg },
+	{ "#cba6f7", GC_bg },
+};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -121,7 +132,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	// TAGKEYS(                        XK_9,                      8)
 	// TAGKEYS(                        XK_0,                      9)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	// { MODKEY|ShiftMask,             XK_q,      spawn,          {.v = killcmd } },

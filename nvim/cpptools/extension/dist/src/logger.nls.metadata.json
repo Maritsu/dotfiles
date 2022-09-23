@@ -1,0 +1,13 @@
+{
+	"messages": [
+		"C/C++ Diagnostics",
+		"C/C++ Debug Protocol",
+		"C/C++ Configuration Warnings"
+	],
+	"keys": [
+		"c.cpp.diagnostics",
+		"c.cpp.debug.protocol",
+		"c.cpp.warnings"
+	],
+	"filePath": "src\\logger"
+}

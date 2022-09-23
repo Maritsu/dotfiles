@@ -1,0 +1,9 @@
+{
+	"messages": [
+		"Add debug configuration is not available for single file."
+	],
+	"keys": [
+		"add.debug.configuration.not.available.for.single.file"
+	],
+	"filePath": "src\\Debugger\\extension"
+}
