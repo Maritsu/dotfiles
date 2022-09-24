@@ -14,18 +14,10 @@ require'nvim-treesitter.configs'.setup{
 }
 
 -- Telescope
-require('telescope').setup{
-	mappings = {
-		i = {
-		},
-		n = {
-			['q'] = "close"
-		}
-	}
-}
-vim.keymap.set('n', "<leader>f", "<cmd>Telescope find_files<CR>")
-vim.keymap.set('n', "<leader>g", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
-vim.keymap.set('n', "<leader>l", "<cmd>Telescope live_grep<CR>")
+require('telescope').setup{}
+vim.keymap.set('n', "<leader>f", ":Telescope find_files<CR>")
+vim.keymap.set('n', "<leader>g", ":Telescope current_buffer_fuzzy_find<CR>")
+vim.keymap.set('n', "<leader>l", ":Telescope live_grep<CR>")
 
 -- Toggle comments 
 require('Comment').setup()
@@ -36,19 +28,19 @@ require('nvim-tree').setup({
 		width = 45
 	}
 })
-vim.keymap.set('n', "tt", "<cmd>NvimTreeToggle<CR>")
-vim.keymap.set('n', "tr", "<cmd>NvimTreeFocus<CR>")
+vim.keymap.set('n', "tt", ":NvimTreeToggle<CR>")
+vim.keymap.set('n', "tr", ":NvimTreeFocus<CR>")
 
 -- Completion
 local cmp = require('cmp')
 cmp.setup({
-	mapping = cmp.mapping.preset.insert({
-		['<M-j>'] = cmp.mapping.scroll_docs(-4),
-		['<M-k>'] = cmp.mapping.scroll_docs(4),
-		['<M-Space>'] = cmp.mapping.complete(),
-		['<Esc>'] = cmp.mapping.abort(),
-		['<Tab>'] = cmp.mapping.confirm({ select = true }),
-	}),
+	-- mapping = cmp.mapping.preset.insert({
+	-- 	['<M-j>'] = cmp.mapping.scroll_docs(-4),
+	-- 	['<M-k>'] = cmp.mapping.scroll_docs(4),
+	-- 	['<M-Space>'] = cmp.mapping.complete(),
+	-- 	['<Esc>'] = cmp.mapping.abort(),
+	-- 	['<Tab>'] = cmp.mapping.confirm({ select = true }),
+	-- }),
 	sources = cmp.config.sources({
 		{name = 'nvim_lsp'},
 	}, {
@@ -147,7 +139,5 @@ require('lint').linters_by_ft = {
 --     "iamcco/markdown-preview.nvim",
 --     run = function() vim.fn["mkdp#util#install"]() end,
 -- })
---
--- use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 --
 -- vim: ft=lua

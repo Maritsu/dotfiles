@@ -25,6 +25,12 @@ noremap <Down> <nop>
 noremap <Up> <nop>
 noremap <Right> <nop>
 
+vnoremap <C-z> <nop>
+onoremap <C-z> <nop>
+cnoremap <C-z> <nop>
+inoremap <C-z> <nop>
+tnoremap <C-z> <nop>
+
 vnoremap '' <Esc>
 onoremap '' <Esc>
 cnoremap '' <C-C><Esc>
@@ -46,6 +52,7 @@ nnoremap <Leader><Leader>c :RVRC<CR>
 "================================================================================"
 
 call plug#begin()
+"Color scheme is kept locally in colors/ dir
 " Plug 'ajmwagar/vim-deus', {'as': 'deus'}
 Plug 'catppuccin/nvim', {'as': 'cap'}
 
@@ -108,7 +115,7 @@ let g:lightline = {
 "Syntax highlighting fixes
 "================================================================================"
 
-" hi! def LineNr guifg=deusGreen
+hi! def LineNr guifg=deusGreen
 hi! def LineNrAbove guifg=#7b7c7e
 hi! def link LineNrBelow LineNrAbove
 hi! EndOfBuffer guifg=bg
