@@ -7,6 +7,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = GC_tf/* "Hack Nerd Font:size=9" */;
+static char *font2[] = {GC_f2};
 static int borderpx = 2;
 
 /*
@@ -106,6 +107,9 @@ char *termname = "st";
  */
 unsigned int tabspaces = 4;
 
+/* bg opacity */
+float alpha = 0.85;
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
@@ -149,14 +153,14 @@ static unsigned int defaultrcs = 258;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 4;
 
 /*
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 80;
-static unsigned int rows = 24;
+static unsigned int cols = 128;
+static unsigned int rows = 72;
 
 /*
  * Default colour and shape of the mouse cursor
