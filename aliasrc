@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# NEOVIM
+alias v="nvim"
+alias sv="doas nvim"
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+# LS AND SHIT
+alias lf="ranger"
+alias ls="ls --color"
+alias la="ls -A"
+alias ll="la -lh"
+alias tra="tree -a"
+tral () { tra $@ | less; }
+alias grep="grep --color=always"
+export LESS="Rij5"
+catl () { cat $@ | less; }
+
+# USEFUL COMMANDS
+unpatch () { interdiff -q $1 /dev/null > revpatch.diff; patch -i revpatch.diff; rm revpatch.diff >/dev/null; }  #undo patch
+wifi () { doas ip link set dev wlan0 down; doas netctl start wlan0-$1; }  #restart wifi
+alias pman="doas pacman"  #save keystrokes
+alias pp="ping -c 1 gnu.org"  #check connectivity
+alias ph="drill snapcraft.io"  #check pi-hole status
+alias untar="tar -xvf"
+alias dh="du -sh"
+alias wm="doas wifi-menu"
+
+# CONFIG EDIT + RELOAD
+alias rbrc="source ~/.bashrc"
+alias vvrc="v ~/.config/nvim/init.vim"
+alias vlrc="v ~/.config/nvim/nvim.lua"
+alias vbrc="v ~/.bashrc"
+alias varc="v ~/.config/aliasrc"
+alias cdwm="cd ~/.src/wm"
+alias cdpr="cd ~/.src/proj"
+
+# OTHER DEV ALIASES
+alias aa="./a.out"
+alias mci="doas make clean install"
+alias rcdwm="$HOME/.src/wm/compiledwm.sh"
+
+# I USE ARCH BTW
+alias lolcat="lolcat -t" # enforce true color
+alias neofetch="pfetch"
+alias btw="pfetch"
+alias ltw="pfetch | lolcat"
+
+# TYPOS + CLEARING
+alias claer="clear"
+alias celar="clear"
+alias cl="clear"
+alias cls="cl;ls"
+alias cla="cl;la"
+alias cll="cl;ll"
+alias cd..="cd .."
+
+# V E R B O S E
+alias cp="cp -v"
+alias mv="mv -v"
+alias rm="rm -v"
