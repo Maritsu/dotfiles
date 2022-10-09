@@ -3,6 +3,18 @@ vim.g.catppuccin_flavour = "mocha";
 require('catppuccin').setup()
 vim.cmd[[Catppuccin mocha]]
 
+-- Background transparency
+-- require("transparent").setup({
+-- 	enable = true,
+-- 	extra_groups = {
+-- 		"all",
+-- 	}
+-- })
+
+-- Custom snippets
+-- local bs = require('bsnip')
+vim.keymap.set('n', "<leader>p", ":lua require('bsnip').paste_snippet()<CR>")
+
 -- Treesitter
 require'nvim-treesitter.configs'.setup{
 	ensure_installed = {'bash', 'c', 'cpp', 'lua', 'vim', 'markdown', 'python'},
@@ -10,6 +22,9 @@ require'nvim-treesitter.configs'.setup{
 
 	highlight = {
 		enable = true,
+	},
+	autotag = {
+		enable = true;
 	}
 }
 
@@ -34,18 +49,28 @@ vim.keymap.set('n', "tr", ":NvimTreeFocus<CR>")
 -- Completion
 local cmp = require('cmp')
 cmp.setup({
-	-- mapping = cmp.mapping.preset.insert({
-	-- 	['<M-j>'] = cmp.mapping.scroll_docs(-4),
-	-- 	['<M-k>'] = cmp.mapping.scroll_docs(4),
-	-- 	['<M-Space>'] = cmp.mapping.complete(),
-	-- 	['<Esc>'] = cmp.mapping.abort(),
-	-- 	['<Tab>'] = cmp.mapping.confirm({ select = true }),
-	-- }),
+	mapping = cmp.mapping.preset.insert({
+		['<M-j>'] = cmp.mapping.scroll_docs(-4),
+		['<M-k>'] = cmp.mapping.scroll_docs(4),
+		['<M-Space>'] = cmp.mapping.complete(),
+		['<Esc>'] = cmp.mapping.abort(),
+		['<Tab>'] = cmp.mapping.confirm({ select = true }),
+	}),
 	sources = cmp.config.sources({
 		{name = 'nvim_lsp'},
 	}, {
 		{name = 'buffer'},
-	})
+	}, {{
+		name = 'path',
+		option = {
+			trailing_slash = true
+	}}})
+})
+cmp.setup.cmdline({ '/', '?' }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		  { name = 'buffer' }
+	}
 })
 cmp.setup.cmdline(':', {
 	mapping = cmp.mapping.preset.cmdline(),
@@ -120,13 +145,14 @@ vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<Leader>sr', ":LspRestart<CR>")
 vim.keymap.set('n', '<Leader>si', ":LspInfo<CR>")
-local servers = {'clangd'}
+local servers = {'clangd', 'html'}
 require'lspconfig'.clangd.setup{}
+require'lspconfig'.html.setup{}
 
 -- Linting
 vim.keymap.set('n', '<leader>a', ':lua vim.lsp.buf.code_action()<CR>')
 require('lint').linters_by_ft = {
-	cpp = {"cpplint"}
+	cpp = {"cpplint"},
 }
 -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 --   callback = function()

@@ -4,11 +4,10 @@
 
 set clipboard=unnamedplus
 
-set noshowmode termguicolors cursorline
+set noshowmode termguicolors
 set number
 set shiftwidth=0
 set tabstop=4
-set cursorline
 
 command W w
 command RVRC so $MYVIMRC
@@ -80,6 +79,9 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
+"HTML
+Plug 'windwp/nvim-ts-autotag'
+
 "Debugging
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
@@ -119,6 +121,15 @@ hi! def LineNr guifg=deusGreen
 hi! def LineNrAbove guifg=#7b7c7e
 hi! def link LineNrBelow LineNrAbove
 hi! EndOfBuffer guifg=bg
+
+" hi Normal guibg=none ctermbg=none
+" hi LineNr guibg=none ctermbg=none
+" hi Folded guibg=none ctermbg=none
+" hi NonText guibg=none ctermbg=none
+" hi SpecialKey guibg=none ctermbg=none
+" hi VertSplit guibg=none ctermbg=none
+" hi SignColumn guibg=none ctermbg=none
+" hi EndOfBuffer guibg=none ctermbg=none
 
 "================================================================================"
 "Extra files
