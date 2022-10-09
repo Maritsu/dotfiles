@@ -98,6 +98,8 @@ static const char *killcmd[]  = { "pkill", "dwm", NULL };
 #define XK_VolUp 0x1008FF13
 #define XK_VolDown 0x1008FF11
 #define XK_VolM 0x1008FF12
+#define XK_BrUp 0x1008FF02
+#define XK_BrDown 0x1008FF03
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -142,6 +144,8 @@ static Key keys[] = {
 	{ XK_ANY_MOD,					XK_VolUp,  spawn,		   SHCMD("$HOME/.src/wm/volume.sh 5") }, // Decrease vol by 5%
 	{ XK_ANY_MOD,					XK_VolDown,spawn,		   SHCMD("$HOME/.src/wm/volume.sh -5") }, // Increase vol by 5%
 	{ XK_ANY_MOD,					XK_VolM,   spawn,          SHCMD("$HOME/.src/wm/volume.sh 0") },   // Toggle mute
+	{ XK_ANY_MOD,					XK_BrUp,   spawn,		   SHCMD("brightnessctl s 5%+") }, // Increase brightness by 5%
+	{ XK_ANY_MOD,					XK_BrDown, spawn,		   SHCMD("brightnessctl s 5%-") }, // Decrease brightness by 5%
 };
 
 /* button definitions */
