@@ -7,6 +7,11 @@ static const unsigned int gappx     = 4;        /* gap pixel between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
+static const char *altbarclass      = "Polybar"; /* Alternate bar class name */
+static const char *alttrayname      = "tray";    /* Polybar tray instance name */
+static const char *altbarcmd        = "";		 /* Alternate bar launch command */
+// static const char *altbarcmd        = "polybar --config=~/.config/polybar/config.ini rab"; /* Alternate bar launch command */
 static const char *fonts[]          = { /* "Hack Nerd Font:size=10" */ GC_fn };
 // static const char dmenufont[]       = "Iosevka:size=12";
 static const char col_gray1[]       = "#222222";
@@ -18,23 +23,32 @@ static const char col_gray4[]       = "#eeeeee";
 // static const char col_beef[]        = GC_hi;
 static const char *colors[][3]      = {
 	/*               fg     bg     border   */
-	[SchemeNorm] = { GC_fg, GC_bg, col_gray2 },
-	[SchemeSel]  = { GC_fg,	GC_ac, GC_ac  },
+	[SchemeNorm] = { GC_fg, GC_bg, GC_bg  },
+	[SchemeSel]  = { GC_ac,	GC_bg, GC_ac  },
 };
 
 static const char *const autostart[] = {
-	"sh", "-c", "~/.fehbg", NULL,
-	"sh", "-c", "~/.src/wm/batstat.sh", "&", NULL,
 	NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "力" };
+static const char *tags[] = { "", "", "", "", "", "", "", "力" };
 
 static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
 static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
 static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
 static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
+
+static const char *tagsel[][2] = {
+	{ "#f38ba8", GC_bg },
+	{ "#fab387", GC_bg },
+	{ "#f9e2af", GC_bg },
+	{ "#a6e3a1", GC_bg },
+	{ "#89dceb", GC_bg },
+	{ "#89b4fa", GC_bg },
+	{ "#b4befe", GC_bg },
+	{ "#cba6f7", GC_bg },
+};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -79,6 +93,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", "0", /*"-fn", dmenufont ,*/
 static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
+static const char *pbrscmd[]  = { "polybar-msg", "cmd", "quit", "&&", "polybar", "--config=~/.config/polybar/config.ini", "rab", "&", NULL };
 
 /* Volume control buttons
  * Hex values taken from XF86 keysym
@@ -87,6 +102,8 @@ static const char *killcmd[]  = { "pkill", "dwm", NULL };
 #define XK_VolUp 0x1008FF13
 #define XK_VolDown 0x1008FF11
 #define XK_VolM 0x1008FF12
+#define XK_BrUp 0x1008FF02
+#define XK_BrDown 0x1008FF03
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -121,16 +138,19 @@ static Key keys[] = {
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+	// TAGKEYS(                        XK_9,                      8)
 	// TAGKEYS(                        XK_0,                      9)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	// { MODKEY|ShiftMask,             XK_q,      spawn,          {.v = killcmd } },
 	{ MODKEY|ControlMask,           XK_q,      spawn,          {.v = killcmd } },
+	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = pbrscmd } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("$HOME/.src/wm/screenshot.sh") },
 	{ XK_ANY_MOD,					XK_VolUp,  spawn,		   SHCMD("$HOME/.src/wm/volume.sh 5") }, // Decrease vol by 5%
 	{ XK_ANY_MOD,					XK_VolDown,spawn,		   SHCMD("$HOME/.src/wm/volume.sh -5") }, // Increase vol by 5%
 	{ XK_ANY_MOD,					XK_VolM,   spawn,          SHCMD("$HOME/.src/wm/volume.sh 0") },   // Toggle mute
+	{ XK_ANY_MOD,					XK_BrUp,   spawn,		   SHCMD("brightnessctl s 5%+") }, // Increase brightness by 5%
+	{ XK_ANY_MOD,					XK_BrDown, spawn,		   SHCMD("brightnessctl s 5%-") }, // Decrease brightness by 5%
 };
 
 /* button definitions */
@@ -148,5 +168,23 @@ static Button buttons[] = {
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+};
+
+static const char *ipcsockpath = "/tmp/dwm.sock";
+static IPCCommand ipccommands[] = {
+  IPCCOMMAND(  view,                1,      {ARG_TYPE_UINT}   ),
+  IPCCOMMAND(  toggleview,          1,      {ARG_TYPE_UINT}   ),
+  IPCCOMMAND(  tag,                 1,      {ARG_TYPE_UINT}   ),
+  IPCCOMMAND(  toggletag,           1,      {ARG_TYPE_UINT}   ),
+  IPCCOMMAND(  tagmon,              1,      {ARG_TYPE_UINT}   ),
+  IPCCOMMAND(  focusmon,            1,      {ARG_TYPE_SINT}   ),
+  IPCCOMMAND(  focusstack,          1,      {ARG_TYPE_SINT}   ),
+  IPCCOMMAND(  zoom,                1,      {ARG_TYPE_NONE}   ),
+  IPCCOMMAND(  incnmaster,          1,      {ARG_TYPE_SINT}   ),
+  IPCCOMMAND(  killclient,          1,      {ARG_TYPE_SINT}   ),
+  IPCCOMMAND(  togglefloating,      1,      {ARG_TYPE_NONE}   ),
+  IPCCOMMAND(  setmfact,            1,      {ARG_TYPE_FLOAT}  ),
+  IPCCOMMAND(  setlayoutsafe,       1,      {ARG_TYPE_PTR}    ),
+  IPCCOMMAND(  quit,                1,      {ARG_TYPE_NONE}   )
 };
 
