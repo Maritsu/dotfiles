@@ -12,7 +12,7 @@ https://reddit.com/y9wb5c
 - `dunstify`
 - `pamixer`
 - `picom`
-- `[polybar-dwm-module](https://github.com/mihirlad55/polybar-dwm-module)`
+- [`polybar-dwm-module`](https://github.com/mihirlad55/polybar-dwm-module)
 - `scrot`
 - `xrandr`
 

@@ -27,6 +27,8 @@ fi
 
 # Set X keymap to match language :) polska gurom
 setxkbmap pl &
+# Composite manager for them *rounded corners*
+picom -r 0 --inactive-dim 0.1 --corner-radius 4 --no-fading-openclose -b
 # Notification daemon
 dunst & 
 
