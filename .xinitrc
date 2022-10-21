@@ -25,13 +25,8 @@ if [ -f "$usermodmap" ]; then
 xmodmap "$usermodmap"
 fi
 
-# Add all other monitors (autorandr -s <name>: new configs)
-autorandr -c
 # Set X keymap to match language :) polska gurom
-# Change accordingly pls
 setxkbmap pl &
-# DWM status bar
-slstatus &
 # Notification daemon
 dunst & 
 

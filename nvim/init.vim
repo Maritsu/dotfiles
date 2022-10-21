@@ -55,6 +55,9 @@ call plug#begin()
 " Plug 'ajmwagar/vim-deus', {'as': 'deus'}
 Plug 'catppuccin/nvim', {'as': 'cap'}
 
+"Color highlighter
+Plug 'ap/vim-css-color'
+
 "LSP, linter
 Plug 'neovim/nvim-lspconfig'
 Plug 'mfussenegger/nvim-lint'

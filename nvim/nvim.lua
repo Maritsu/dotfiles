@@ -166,4 +166,10 @@ require('lint').linters_by_ft = {
 --     run = function() vim.fn["mkdp#util#install"]() end,
 -- })
 --
+
+-- OI
+vim.keymap.set('n', '<leader>c', ':!g++ -O3 -static % -std=c++17 -o %:r<CR>')
+vim.keymap.set('n', '<leader>e', ':!st -e ./%:r & disown<CR>')
+vim.keymap.set('n', '<leader>o', ':!cp %:r ~/ocen/; st -T OCENA ZADANIA -e cd ~/ocen && ./ocen %:r<CR>')
+
 -- vim: ft=lua

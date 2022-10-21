@@ -17,14 +17,15 @@ export LESS="Rij5"
 catl () { cat $@ | less; }
 
 # USEFUL COMMANDS
-unpatch () { interdiff -q $1 /dev/null > revpatch.diff; patch -i revpatch.diff; rm revpatch.diff >/dev/null; }  #undo patch
-wifi () { doas ip link set dev wlan0 down; doas netctl start wlan0-$1; }  #restart wifi
+unpatch () { interdiff -q $1 /dev/null > revpatch.diff; patch -i revpatch.diff; rm revpatch.diff >/dev/null; }  #undo patch, also done with patch -Ri $1
+wifi () { doas ip link set dev wlan0 down; doas netctl start wlan0-$1; }  #restart wifi, connect to profile $1 for wireless
 alias pman="doas pacman"  #save keystrokes
 alias pp="ping -c 1 gnu.org"  #check connectivity
-alias ph="drill snapcraft.io"  #check pi-hole status
 alias untar="tar -xvf"
 alias dh="du -sh"
 alias wm="doas wifi-menu"
+alias sn="shutdown now"
+alias sx="startx"
 
 # CONFIG EDIT + RELOAD
 alias rbrc="source ~/.bashrc"
