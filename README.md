@@ -23,7 +23,7 @@ https://reddit.com/y9wb5c
 - Polybar with DWM module
 - DWM with IPC patch
 - dmenu
-- [st*](https://github.com/catppuccin/st]
+- [st*](https://github.com/catppuccin/st)
 - slock
 - [dunstrc*](https://github.com/catppuccin/dunst)
 - helper shell scripts
