@@ -30,6 +30,7 @@ static const char *colors[][3]      = {
 static const char *const autostart[] = {
 	// "sh", "-c", "~/.fehbg", NULL,
 	// "sh", "-c", "~/.src/wm/batstat.sh", "&", NULL,
+	"sh", "-c", "~/startshit.sh", NULL,
 	NULL /* terminate */
 };
 
@@ -91,7 +92,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", "0", /*"-fn", dmenufont ,*/ "-p", "Run" }; //FORCE MONITOR 0
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, /*"-fn", dmenufont ,*/ "-p", "Run" }; //FORCE MONITOR 0
 static const char *termcmd[]  = { "st", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
@@ -105,6 +106,10 @@ static const char *killcmd[]  = { "pkill", "dwm", NULL };
 #define XK_VolM 0x1008FF12
 #define XK_BrUp 0x1008FF02
 #define XK_BrDown 0x1008FF03
+#define XK_AuPlay 0x1008FF14
+#define XK_AuStop 0x1008FF15
+#define XK_AuPrev 0x1008FF16
+#define XK_AuNext 0x1008FF17
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -144,13 +149,18 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	// { MODKEY|ShiftMask,             XK_q,      spawn,          {.v = killcmd } },
 	{ MODKEY|ControlMask,           XK_q,      spawn,          {.v = killcmd } },
+	{ MODKEY|ShiftMask,	 	        XK_w,      spawn,          SHCMD("polybar-msg cmd restart") },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("$HOME/.src/wm/screenshot.sh") },
-	{ XK_ANY_MOD,					XK_VolUp,  spawn,		   SHCMD("$HOME/.src/wm/volume.sh 5") }, // Decrease vol by 5%
-	{ XK_ANY_MOD,					XK_VolDown,spawn,		   SHCMD("$HOME/.src/wm/volume.sh -5") }, // Increase vol by 5%
-	{ XK_ANY_MOD,					XK_VolM,   spawn,          SHCMD("$HOME/.src/wm/volume.sh 0") },   // Toggle mute
-	{ XK_ANY_MOD,					XK_BrUp,   spawn,		   SHCMD("$HOME/.src/wm/bright.sh 5%+") }, // Increase brightness by 5%
-	{ XK_ANY_MOD,					XK_BrDown, spawn,		   SHCMD("$HOME/.src/wm/bright.sh 5%-") }, // Decrease brightness by 5%
+	{ XK_ANY_MOD,					XK_VolUp,  spawn,		   SHCMD("$HOME/.src/wm/volume.sh 5") },	// Decrease vol by 5%
+	{ XK_ANY_MOD,					XK_VolDown,spawn,		   SHCMD("$HOME/.src/wm/volume.sh -5") },	// Increase vol by 5%
+	{ XK_ANY_MOD,					XK_VolM,   spawn,          SHCMD("$HOME/.src/wm/volume.sh 0") },	// Toggle mute
+	{ XK_ANY_MOD,					XK_BrUp,   spawn,		   SHCMD("$HOME/.src/wm/bright.sh 5%+") },	// Increase brightness by 5%
+	{ XK_ANY_MOD,					XK_BrDown, spawn,		   SHCMD("$HOME/.src/wm/bright.sh 5%-") },	// Decrease brightness by 5%
+	{ XK_ANY_MOD,					XK_AuPlay, spawn,		   SHCMD("playerctl play-pause") },
+	{ XK_ANY_MOD,					XK_AuStop, spawn,		   SHCMD("playerctl stop") },
+	{ XK_ANY_MOD,					XK_AuPrev, spawn,		   SHCMD("playerctl previous") },
+	{ XK_ANY_MOD,					XK_AuNext, spawn,		   SHCMD("playerctl next") },
 };
 
 /* button definitions */
