@@ -3,14 +3,6 @@ vim.g.catppuccin_flavour = "mocha";
 require('catppuccin').setup()
 vim.cmd[[Catppuccin mocha]]
 
--- Background transparency
--- require("transparent").setup({
--- 	enable = true,
--- 	extra_groups = {
--- 		"all",
--- 	}
--- })
-
 -- Custom snippets
 -- local bs = require('bsnip')
 vim.keymap.set('n', "<leader>p", ":lua require('bsnip').paste_snippet()<CR>")
@@ -26,6 +18,12 @@ require'nvim-treesitter.configs'.setup{
 	autotag = {
 		enable = true;
 	}
+}
+
+-- Indentation
+require("indent_blankline").setup {
+    -- show_current_context = true,
+    -- show_current_context_start = true,
 }
 
 -- Telescope
@@ -129,7 +127,7 @@ dap.configurations.cpp = {
 		type = 'cppdbg',
 		request = 'launch',
 		program = function()
-			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/' .. vim.fn.expand('%:r'), 'file')
 		end,
 		cwd = '${workspaceFolder}',
 		stopAtEntry = true,
@@ -169,7 +167,6 @@ require('lint').linters_by_ft = {
 
 -- OI
 vim.keymap.set('n', '<leader>c', ':!g++ -O3 -static % -std=c++17 -o %:r<CR>')
-vim.keymap.set('n', '<leader>e', ':!st -e ./%:r & disown<CR>')
-vim.keymap.set('n', '<leader>o', ':!cp %:r ~/ocen/; st -T OCENA ZADANIA -e cd ~/ocen && ./ocen %:r<CR>')
+vim.keymap.set('n', '<leader>x', ':!g++ -g -static % -std=c++17 -o %:r<CR>')
 
 -- vim: ft=lua

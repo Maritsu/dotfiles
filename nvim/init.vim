@@ -4,7 +4,7 @@
 
 set clipboard=unnamedplus
 
-set noshowmode termguicolors
+set noshowmode termguicolors cursorline
 set number
 set shiftwidth=0
 set tabstop=4
@@ -70,9 +70,12 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+"Lightline
+Plug 'itchyny/lightline.vim'
+Plug 'spywhere/lightline-lsp'
+
 "Icons and navigation
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'itchyny/lightline.vim'
 Plug 'kyazdani42/nvim-tree.lua'
 
 "Completion
@@ -93,28 +96,48 @@ Plug 'nvim-telescope/telescope-dap.nvim'
 
 "Misc
 Plug 'tpope/vim-fugitive'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'numToStr/Comment.nvim'
 Plug 'andweeb/presence.nvim'
 call plug#end()
 
 "================================================================================"
-"Lightline, color scheme
+"Lightline
 "================================================================================"
-
-colorscheme catppuccin
 
 set completeopt=menu,menuone,noselect
 let g:lightline = {
 	\ 'colorscheme': 'catppuccin',
 	\ 'active': {
 	\ 	'left': [ [ 'mode', 'paste' ],
-	\			  [ 'readonly', 'filename', 'modified' ] ],
-	\ 	'right':[ [ 'lineinfo' ],
-	\			  [ 'percent' ],
+	\			  [ 'readonly', 'filename', 'modified' ],
+	\			  [ 'linter_warnings', 'linter_errors' ] ],
+	\ 	'right':[ [ 'percent', 'lineinfo' ],
 	\			  [ 'filetype' ] ]
 	\ },
 \ }
+
+let g:lightline.component_expand = {
+	\  'linter_hints': 'lightline#lsp#hints',
+	\  'linter_infos': 'lightline#lsp#infos',
+	\  'linter_warnings': 'lightline#lsp#warnings',
+	\  'linter_errors': 'lightline#lsp#errors',
+	\  'linter_ok': 'lightline#lsp#ok',
+\ }
+let g:lightline.component_type = {
+      \     'linter_hints': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
+
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
 
 "================================================================================"
 "Syntax highlighting fixes

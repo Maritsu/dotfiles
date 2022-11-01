@@ -3,8 +3,8 @@
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int gappx     = 6;        /* gap pixel between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int gappx     = 12;        /* gap pixel between windows */
+static const unsigned int snap      = 12;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
@@ -74,9 +74,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "",      tile },    /* first entry is default */
-	{ "",      NULL },    /* no layout function means floating behavior */
-	{ "",      monocle },
+	{ "tiled",      tile },    /* first entry is default */
+	{ "float",      NULL },    /* no layout function means floating behavior */
+	{ "monocle",    monocle },
 };
 
 /* key definitions */
@@ -122,6 +122,9 @@ static Key keys[] = {
 	// { MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_j,      setcfact,       {.f = +0.25} },
+	{ MODKEY|ShiftMask,             XK_k,      setcfact,       {.f = -0.25} },
+	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_z,      zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
@@ -161,6 +164,7 @@ static Key keys[] = {
 	{ XK_ANY_MOD,					XK_AuStop, spawn,		   SHCMD("playerctl stop") },
 	{ XK_ANY_MOD,					XK_AuPrev, spawn,		   SHCMD("playerctl previous") },
 	{ XK_ANY_MOD,					XK_AuNext, spawn,		   SHCMD("playerctl next") },
+	{ MODKEY,						XK_d,	   spawn,		   SHCMD("dunstctl set-paused toggle") },	// Toggle DND mode
 };
 
 /* button definitions */
