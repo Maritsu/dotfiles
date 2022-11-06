@@ -95,7 +95,7 @@ vim.keymap.set('n', "<M-0>", ":lua require'dap'.step_out()<CR>")
 vim.keymap.set('n', "<M-k>", ":lua require'dap'.terminate()<CR>")
 vim.keymap.set('n', "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
 vim.keymap.set('n', "<leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
-vim.keymap.set('n', "<leader>l", ":lua require'dap'.set_breakpoint(nil,nil,vim.fn.input('Log point message: '))<CR>")
+-- vim.keymap.set('n', "<leader>l", ":lua require'dap'.set_breakpoint(nil,nil,vim.fn.input('Log point message: '))<CR>")
 
 vim.keymap.set('n', "<leader>do", ":lua require'dapui'.open()<CR>", {silent = true})
 vim.keymap.set('n', "<leader>dc", ":lua require'dapui'.close()<CR>", {silent = true})
@@ -103,6 +103,25 @@ vim.keymap.set('n', "<leader>dc", ":lua require'dapui'.close()<CR>", {silent = t
 local dap, dapui = require('dap'), require('dapui')
 
 require("nvim-dap-virtual-text").setup()
+-- dapui.setup({
+-- 	layouts = {
+-- 		{
+-- 			elements = {
+-- 				{ id = "watches", size = 25 },
+-- 				"scopes",
+-- 			},
+-- 			size = 60,
+-- 			position = "left",
+-- 		},
+-- 		{
+-- 			elements = {
+-- 				"console",
+-- 			},
+-- 			size = 0.25,
+-- 			position = "bottom",
+-- 		}
+-- 	}
+-- })
 dapui.setup()
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -142,6 +161,7 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<Leader>sr', ":LspRestart<CR>")
+vim.keymap.set('n', '<Leader>ss', ":LspStart<CR>")
 vim.keymap.set('n', '<Leader>si', ":LspInfo<CR>")
 local servers = {'clangd', 'html'}
 require'lspconfig'.clangd.setup{}
@@ -167,6 +187,6 @@ require('lint').linters_by_ft = {
 
 -- OI
 vim.keymap.set('n', '<leader>c', ':!g++ -O3 -static % -std=c++17 -o %:r<CR>')
-vim.keymap.set('n', '<leader>x', ':!g++ -g -static % -std=c++17 -o %:r<CR>')
+vim.keymap.set('n', '<leader>x', ':!g++ -g -fsanitize=address,undefined -fno-sanitize-recover -fstack-protector % -std=c++17 -o %:r<CR>')
 
 -- vim: ft=lua
