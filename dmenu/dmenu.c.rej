@@ -1,58 +1,11 @@
 --- dmenu.c
 +++ dmenu.c
-@@ -445,6 +447,27 @@ insert:
- 		calcoffsets();
- 		break;
- 	case XK_Left:
-+		if (columns > 1) {
-+			if (!sel)
-+				return;
-+			tmpsel = sel;
-+			for (i = 0; i < lines; i++) {
-+				if (!tmpsel->left || tmpsel->left->right != tmpsel) {
-+					if (offscreen)
-+						break;
-+					return;
-+				}
-+				if (tmpsel == curr)
-+					offscreen = 1;
-+				tmpsel = tmpsel->left;
-+			}
-+			sel = tmpsel;
-+			if (offscreen) {
-+				curr = prev;
-+				calcoffsets();
-+			}
-+			break;
-+		}
- 		if (cursor > 0 && (!sel || !sel->left || lines > 0)) {
- 			cursor = nextrune(-1);
- 			break;
-@@ -481,6 +504,27 @@ insert:
- 			sel->out = 1;
- 		break;
- 	case XK_Right:
-+		if (columns > 1) {
-+			if (!sel)
-+				return;
-+			tmpsel = sel;
-+			for (i = 0; i < lines; i++) {
-+				if (!tmpsel->right ||  tmpsel->right->left != tmpsel) {
-+					if (offscreen)
-+						break;
-+					return;
-+				}
-+				tmpsel = tmpsel->right;
-+				if (tmpsel == next)
-+					offscreen = 1;
-+			}
-+			sel = tmpsel;
-+			if (offscreen) {
-+				curr = next;
-+				calcoffsets();
-+			}
-+			break;
-+		}
- 		if (text[cursor] != '\0') {
- 			cursor = nextrune(+1);
- 			break;
+@@ -154,7 +154,7 @@ drawmenu(void)
+ 	if (lines > 0) {
+ 		/* draw vertical list */
+ 		for (item = curr; item != next; item = item->right)
+-			drawitem(item, x, y += bh, mw - x);
++			drawitem(item, x - promptw, y += bh, mw);
+ 	} else if (matches) {
+ 		/* draw horizontal list */
+ 		x += inputw;
