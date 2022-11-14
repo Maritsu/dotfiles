@@ -2,8 +2,8 @@
 #include "../colors.h"
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int gappx     = 12;        /* gap pixel between windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int gappx     = 8;        /* gap pixel between windows */
 static const unsigned int snap      = 12;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -23,8 +23,8 @@ static const char col_gray4[]       = "#eeeeee";
 // static const char col_beef[]        = GC_hi;
 static const char *colors[][3]      = {
 	/*               fg     bg     border   */
-	[SchemeNorm] = { GC_fg, GC_bg, GC_bg  },
-	[SchemeSel]  = { GC_ac,	GC_bg, GC_ac  },
+	[SchemeNorm] = { GC_fg, GC_bg, GC_ac  },
+	[SchemeSel]  = { GC_ac,	GC_bg, GC_hi  },
 };
 
 static const char *const autostart[] = {
@@ -94,6 +94,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, /*"-fn", dmenufont ,*/ "-p", "Run" }; //FORCE MONITOR 0
 static const char *termcmd[]  = { "st", NULL };
+static const char *alttcmd[]  = { "alacritty", "-e", "zsh", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
 
@@ -115,6 +116,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = alttcmd } },
 	// { MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

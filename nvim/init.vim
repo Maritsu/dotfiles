@@ -3,6 +3,7 @@
 "================================================================================"
 
 set clipboard=unnamedplus
+set mouse=
 
 set noshowmode termguicolors cursorline
 set number
@@ -85,14 +86,15 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
-"HTML
-Plug 'windwp/nvim-ts-autotag'
-
 "Debugging
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'nvim-telescope/telescope-dap.nvim'
+
+"File-specific extensions
+Plug 'windwp/nvim-ts-autotag'	" HTML/XML
+Plug 'lervag/vimtex'			" LaTeX
 
 "Misc
 Plug 'tpope/vim-fugitive'
@@ -138,6 +140,15 @@ function! LightlineFilename()
   let modified = &modified ? ' +' : ''
   return filename . modified
 endfunction
+
+"================================================================================"
+"VimTeX
+"================================================================================"
+
+filetype plugin indent on
+syntax enable
+let g:vimtex_view_method = 'zathura'
+let maplocalleader = " "
 
 "================================================================================"
 "Syntax highlighting fixes

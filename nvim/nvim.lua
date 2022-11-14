@@ -14,6 +14,7 @@ require'nvim-treesitter.configs'.setup{
 
 	highlight = {
 		enable = true,
+		disable = {"latex",},
 	},
 	autotag = {
 		enable = true;
@@ -34,6 +35,9 @@ vim.keymap.set('n', "<leader>l", ":Telescope live_grep<CR>")
 
 -- Toggle comments 
 require('Comment').setup()
+
+-- Discord RPC
+require("presence"):setup()
 
 -- File browser
 require('nvim-tree').setup({
