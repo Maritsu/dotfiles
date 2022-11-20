@@ -24,27 +24,27 @@ unsetopt beep nomatch
 bindkey -v
 
 function checkexit() {
-	local LEC=$?
-	if [[ $LEC -ne 0 ]]; then
-		local ECP=""
-		ECP+="%{$fg[red]%}$LEC%{$reset_color%}"
-		echo $ECP
-	fi
+	let foo=$?; if [[ $foo != 0 ]]; then if [ $foo == 139 ]; then echo "%BTHE EEPER%b "; else echo "$foo "; fi; fi
 }
 
 # OH-MY-ZSH OPTIONS
 export ZSH="$HOME/.oh-my-zsh"
-source $ZSH/oh-my-zsh.sh
 DISABLE_AUTO_TITLE="false"
 ENABLE_CORRECTION="true"
 plugins=(
+	sudo
+	z
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
+source $ZSH/oh-my-zsh.sh
 
 source ~/.config/aliasrc ~/.config/pfetchrc
+alias sudo="doas"
 alias vzrc="v ~/.zshrc"
 alias rzrc="source ~/.zshrc"
-PS1="%F{blue}%B%n%b%f%F{cyan}@%m%f %F{yellow}%~%f
-$(checkexit)%(!.#.%%) "
-RPROMPT="$(checkexit)"
+PRF=""
+PS1='%F{magenta}$(if [[ "$PRF" != "" ]]; then echo "[$PRF] "; fi)%f%F{blue}%B%n%b%f%F{cyan}@%m%f %F{yellow}%~%f
+%F{red}$(let foo=$?; if [[ $foo != 0 ]]; then if [ $foo == 139 ]; then echo "%BTHE EEPER%b "; else echo "$foo "; fi; fi)%f%(!.#.%%) '
+
+[ -d "/home/bit/.path" ] && export PATH="/home/bit/.local/bin:/home/bit/Apps:/home/bit/.path:$PATH"

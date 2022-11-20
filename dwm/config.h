@@ -93,8 +93,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, /*"-fn", dmenufont ,*/ "-p", "Run" }; //FORCE MONITOR 0
-static const char *termcmd[]  = { "st", NULL };
-static const char *alttcmd[]  = { "alacritty", "-e", "zsh", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
 
@@ -116,7 +115,6 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = alttcmd } },
 	// { MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
