@@ -7,6 +7,7 @@ https://reddit.com/y9wb5c
 
 # Dependencies
 - `autorandr`
+- `alacritty`
 - `feh`
 - `dunst`
 - `dunstify`
@@ -14,6 +15,7 @@ https://reddit.com/y9wb5c
 - `picom`
 - [`polybar-dwm-module`](https://github.com/mihirlad55/polybar-dwm-module)
 - `scrot`
+- `starship`
 - `xrandr`
 
 **NOTE** that everything in this repository is styled to fit the [`catppuccin`](https://github.com/catppuccin) color scheme, mocha variant.
@@ -23,18 +25,19 @@ https://reddit.com/y9wb5c
 - Polybar with DWM module
 - DWM with IPC patch
 - dmenu
-- [st*](https://github.com/catppuccin/st)
+- [alacritty*](https://github.com/catppuccin/alacritty)
 - slock
 - [dunstrc*](https://github.com/catppuccin/dunst)
+- starship
 - helper shell scripts
 
 - xinit
 
 - [nvim*](https://github.com/catppuccin/nvim)
 
-- bashrc, bash aliases and pfetch config
+- bashrc, zshrc, bash/zsh aliases
 
-`*` -> official configs from [@catppuccin](https://github.com/catppuccin)
+`*` official configs from [@catppuccin](https://github.com/catppuccin)
 
 # Also used to fit nicely 
 - [Github](https://github.com/catppuccin/github)
