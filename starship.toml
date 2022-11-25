@@ -1,0 +1,64 @@
+format = """
+$username$hostname\
+$directory\
+$git_branch$git_commmit$git_state$git_metrics
+${custom.exitcode}$character
+"""
+add_newline = false
+
+[username]
+style_user = "blue bold"
+style_root = "red bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+ssh_symbol = '[\[ssh\]](bold green) '
+format = " $ssh_symbol[$hostname](cyan) "
+trim_at = "."
+disabled = false
+show_always = true
+
+[character]
+success_symbol = "[❯](bold cyan)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+vimcmd_replace_one_symbol = "[❮](purple)"
+vimcmd_replace_symbol = "[❮](bold purple)"
+vimcmd_visual_symbol = "[❮](bold yellow)"
+
+[directory]
+read_only = " "
+truncate_to_repo = false
+truncation_length = 1234
+style = "italic yellow"
+format = "in [$path$read_only]($style) "
+
+[git_state]
+rebase = "rebasing"
+merge = "merging"
+revert = "reverting"
+cherry_pick = "cherry-picking"
+bisect = "bisecting"
+am = "mailbox"
+am_or_rebase = "mailbox/rebase"
+style = "bold yellow"
+format = '\([[$state( $progress_current/$progress_total)]]($style)\)'
+
+[git_commit]
+tag_symbol = " "
+tag_disabled = false
+format = '[\($tag$hash\)]($style)'
+
+[git_metrics]
+added_style = "bold green"
+deleted_style = "bold red"
+only_nonzero_diffs = true
+format = "([+$added]($added_style) )([-$deleted]($deleted_style) )"
+disabled = false
+
+[custom.exitcode]
+command = "echo $?"
+format = "[$output](bold red) "
