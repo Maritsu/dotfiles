@@ -14,12 +14,11 @@ disabled = false
 show_always = true
 
 [hostname]
-ssh_only = false
-ssh_symbol = '[\[ssh\]](bold green) '
-format = " $ssh_symbol[$hostname](cyan) "
+ssh_only = true
+ssh_symbol = '[\(ssh\)](bold green)'
+format = "on [$hostname](cyan)$ssh_symbol "
 trim_at = "."
 disabled = false
-show_always = true
 
 [character]
 success_symbol = "[❯](bold cyan)"
