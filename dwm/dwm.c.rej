@@ -1,45 +1,14 @@
 --- dwm.c
 +++ dwm.c
-@@ -2126,14 +2138,38 @@ void
- zoom(const Arg *arg)
- {
- 	Client *c = selmon->sel;
-+	Client *at = NULL, *cold, *cprevious = NULL;
+@@ -237,7 +239,11 @@ static int xerrorstart(Display *dpy, XErrorEvent *ee);
+ static void zoom(const Arg *arg);
  
- 	if (!selmon->lt[selmon->sellt]->arrange
- 	|| (selmon->sel && selmon->sel->isfloating))
- 		return;
--	if (c == nexttiled(selmon->clients))
--		if (!c || !(c = nexttiled(c->next)))
--			return;
--	pop(c);
-+	if (c == nexttiled(selmon->clients)) {
-+		at = findbefore(prevzoom);
-+		if (at)
-+			cprevious = nexttiled(at->next);
-+		if (!cprevious || cprevious != prevzoom) {
-+			prevzoom = NULL;
-+			if (!c || !(c = nexttiled(c->next)))
-+				return;
-+		} else
-+			c = cprevious;
-+	}
-+	cold = nexttiled(selmon->clients);
-+	if (c != cold && !at)
-+		at = findbefore(c);
-+	detach(c);
-+	attach(c);
-+	/* swap windows instead of pushing the previous one down */
-+	if (c != cold && at) {
-+		prevzoom = cold;
-+		if (cold && at != cold) {
-+			detach(cold);
-+			cold->next = at->next;
-+			at->next = cold;
-+		}
-+	}
-+	focus(c);
-+	arrange(c->mon);
- }
- 
- int
+ /* variables */
++static const char autostartblocksh[] = "autostart_blocking.sh";
++static const char autostartsh[] = "autostart.sh";
+ static const char broken[] = "broken";
++static const char dwmdir[] = "dwm";
++static const char localshare[] = ".local/share";
+ static char stext[256];
+ static int screen;
+ static int sw, sh;           /* X display screen geometry width, height */
