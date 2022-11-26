@@ -3,55 +3,33 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 8;        /* gap pixel between windows */
-static const unsigned int snap      = 12;       /* snap pixel */
+static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int gappih    = 8;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 8;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 8;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 8;       /* vert outer gap between windows and screen edge */
+static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int usealtbar          = 1;        /* 1 means use non-dwm status bar */
 static const char *altbarclass      = "Polybar"; /* Alternate bar class name */
 static const char *alttrayname      = "tray";    /* Polybar tray instance name */
-static const char *altbarcmd        = "";		 /* Alternate bar launch command */
-// static const char *altbarcmd        = "polybar --config=~/.config/polybar/config.ini rab"; /* Alternate bar launch command */
-static const char *fonts[]          = { /* "Hack Nerd Font:size=10" */ GC_fn };
-// static const char dmenufont[]       = "Iosevka:size=12";
+static const char *altbarcmd        = ""; /* Alternate bar launch command */
+static const char *fonts[]          = { GC_fn };
+// static const char dmenufont[]       = GC_fn;
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-// static const char col_backg[]       = GC_bg;
-// static const char col_main[]        = GC_ac;
-// static const char col_beef[]        = GC_hi;
+static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
-	/*               fg     bg     border   */
-	[SchemeNorm] = { GC_fg, GC_bg, GC_ac  },
-	[SchemeSel]  = { GC_ac,	GC_bg, GC_hi  },
-};
-
-static const char *const autostart[] = {
-	// "sh", "-c", "~/.fehbg", NULL,
-	// "sh", "-c", "~/.src/wm/batstat.sh", "&", NULL,
-	"sh", "-c", "~/startshit.sh", NULL,
-	NULL /* terminate */
+	/*               fg         bg         border   */
+	[SchemeNorm] = { GC_fg, GC_bg, GC_bg },
+	[SchemeSel]  = { GC_ac, GC_bg, GC_ac },
 };
 
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "", "", "力" };
-
-static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
-static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
-static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
-
-static const char *tagsel[][2] = {
-	{ "#f38ba8", GC_bg },
-	{ "#fab387", GC_bg },
-	{ "#f9e2af", GC_bg },
-	{ "#a6e3a1", GC_bg },
-	{ "#89dceb", GC_bg },
-	{ "#89b4fa", GC_bg },
-	{ "#b4befe", GC_bg },
-	{ "#cba6f7", GC_bg },
-};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -63,7 +41,6 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,       NULL,       0,	        0,           -1 },
 	{ "mpv",	  NULL,		  NULL,		  0,			1,			 -1 },
 	{ "USC-Game", NULL,		  NULL,		  0,			0,			 -1 },
-	{ "st", 	  NULL,		  NULL,		  0,			0,			 -1 },
 };
 
 /* layout(s) */
@@ -72,11 +49,26 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+#define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
+#include "vanitygaps.c"
+
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "tiled",      tile },    /* first entry is default */
-	{ "float",      NULL },    /* no layout function means floating behavior */
-	{ "monocle",    monocle },
+	{ "[]=",      tile },    /* first entry is default */
+	{ "[M]",      monocle },
+	// { "[@]",      spiral },
+	// { "[\\]",     dwindle },
+	// { "D[]",      deck },
+	// { "TTT",      bstack },
+	// { "===",      bstackhoriz },
+	// { "HHH",      grid },
+	// { "###",      nrowgrid },
+	// { "---",      horizgrid },
+	// { ":::",      gaplessgrid },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ NULL,       NULL },
 };
 
 /* key definitions */
@@ -92,7 +84,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, /*"-fn", dmenufont ,*/ "-p", "Run" }; //FORCE MONITOR 0
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-p", "Run", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *lockcmd[]  = { "slock", NULL };
 static const char *killcmd[]  = { "pkill", "dwm", NULL };
@@ -169,7 +161,7 @@ static Key keys[] = {
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
+static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
