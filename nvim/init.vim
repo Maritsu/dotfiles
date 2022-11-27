@@ -46,15 +46,27 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 nnoremap <Leader><Leader>c :RVRC<CR>
+nnoremap <Leader><Leader>e :e $MYVIMRC<CR>
+nnoremap <Leader><Leader>l :e ~/.config/nvim/nvim.lua<CR>
+nnoremap <Leader>ds :!rm -r ~/.local/share/nvim/swap &<CR><CR>
 
 "================================================================================"
 "Plugins
 "================================================================================"
 
+nnoremap <Leader>pi :PlugInstall<CR>
+nnoremap <Leader>pc :PlugClean<CR>
+nnoremap <Leader>pu :PlugUpdate<CR>
+nnoremap <Leader>pU :PlugUpgrade<CR>
+
 call plug#begin()
 "Color scheme is kept locally in colors/ dir
 " Plug 'ajmwagar/vim-deus', {'as': 'deus'}
 Plug 'catppuccin/nvim', {'as': 'cap'}
+Plug 'xiyaowong/nvim-transparent'
+
+" Header
+Plug 'glepnir/dashboard-nvim'
 
 "Color highlighter
 Plug 'ap/vim-css-color'
@@ -141,13 +153,24 @@ function! LightlineFilename()
   return filename . modified
 endfunction
 
+" Uncomment this block if you want transparency
+" Also look at extra files (GWgf)
+" let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+" let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+" let s:palette.inactive.middle = s:palette.normal.middle
+" let s:palette.tabline.middle = s:palette.normal.middle
+" let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+" let s:palette.normal.right = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+" let s:palette.inactive.right = s:palette.normal.right
+" let s:palette.tabline.right = s:palette.normal.right
+"
 "================================================================================"
 "VimTeX
 "================================================================================"
 
 filetype plugin indent on
 syntax enable
-let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_method = 'xdg-open'
 let maplocalleader = " "
 
 "================================================================================"

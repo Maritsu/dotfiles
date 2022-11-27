@@ -3,13 +3,104 @@ vim.g.catppuccin_flavour = "mocha";
 require('catppuccin').setup()
 vim.cmd[[Catppuccin mocha]]
 
--- Custom snippets
--- local bs = require('bsnip')
-vim.keymap.set('n', "<leader>p", ":lua require('bsnip').paste_snippet()<CR>")
+require("transparent").setup({
+	enable = false, -- Enable if you want to have transparency
+	extra_groups = {
+		"all",
+		"LightlineLeft_normal_0_1",
+		"LightlineLeft_normal_0_right",
+		"LightlineLeft_normal_1",
+	}
+})
+
+-- Dashboard
+local db = require("dashboard")
+db.custom_header = {
+    '',
+    '',
+    'NNNNNNNN        NNNNNNNNEEEEEEEEEEEEEEEEEEEEEE     OOOOOOOOO     VVVVVVVV           VVVVVVVVIIIIIIIIIIMMMMMMMM               MMMMMMMM',
+    'N:::::::N       N::::::NE::::::::::::::::::::E   OO:::::::::OO   V::::::V           V::::::VI::::::::IM:::::::M             M:::::::M',
+    'N::::::::N      N::::::NE::::::::::::::::::::E OO:::::::::::::OO V::::::V           V::::::VI::::::::IM::::::::M           M::::::::M',
+    'N:::::::::N     N::::::NEE::::::EEEEEEEEE::::EO:::::::OOO:::::::OV::::::V           V::::::VII::::::IIM:::::::::M         M:::::::::M',
+    'N::::::::::N    N::::::N  E:::::E       EEEEEEO::::::O   O::::::O V:::::V           V:::::V   I::::I  M::::::::::M       M::::::::::M',
+    'N:::::::::::N   N::::::N  E:::::E             O:::::O     O:::::O  V:::::V         V:::::V    I::::I  M:::::::::::M     M:::::::::::M',
+    'N:::::::N::::N  N::::::N  E::::::EEEEEEEEEE   O:::::O     O:::::O   V:::::V       V:::::V     I::::I  M:::::::M::::M   M::::M:::::::M',
+    'N::::::N N::::N N::::::N  E:::::::::::::::E   O:::::O     O:::::O    V:::::V     V:::::V      I::::I  M::::::M M::::M M::::M M::::::M',
+    'N::::::N  N::::N:::::::N  E:::::::::::::::E   O:::::O     O:::::O     V:::::V   V:::::V       I::::I  M::::::M  M::::M::::M  M::::::M',
+    'N::::::N   N:::::::::::N  E::::::EEEEEEEEEE   O:::::O     O:::::O      V:::::V V:::::V        I::::I  M::::::M   M:::::::M   M::::::M',
+    'N::::::N    N::::::::::N  E:::::E             O:::::O     O:::::O       V:::::V:::::V         I::::I  M::::::M    M:::::M    M::::::M',
+    'N::::::N     N:::::::::N  E:::::E       EEEEEEO::::::O   O::::::O        V:::::::::V          I::::I  M::::::M     MMMMM     M::::::M',
+    'N::::::N      N::::::::NEE::::::EEEEEEEE:::::EO:::::::OOO:::::::O         V:::::::V         II::::::IIM::::::M               M::::::M',
+    'N::::::N       N:::::::NE::::::::::::::::::::E OO:::::::::::::OO           V:::::V          I::::::::IM::::::M               M::::::M',
+    'N::::::N        N::::::NE::::::::::::::::::::E   OO:::::::::OO              V:::V           I::::::::IM::::::M               M::::::M',
+    'NNNNNNNN         NNNNNNNEEEEEEEEEEEEEEEEEEEEEE     OOOOOOOOO                 VVV            IIIIIIIIIIMMMMMMMM               MMMMMMMM',
+	'',
+	'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ac vestibulum neque. Fusce tristique velit orci, quis rhoncus tellus luctus.',
+    '',
+    '',
+}
+db.custom_center = {
+	{
+		icon = " ",
+		desc = "Edit configuration		",
+		shortcut = "SPC SPC e",
+		action = "e $MYVIMRC"
+	},
+		{
+		icon = " ",
+		desc = "Edit configuration (lua)		",
+		shortcut = "SPC SPC l",
+		actioc = "e ~/.config/nvim/nvim.lua"
+	},
+	{
+		icon = " ",
+		desc = "Find file			",
+		shortcut = "SPC f",
+		action = "Telescope find_files"
+	},
+	{
+		icon = " ",
+		desc = "Grep for content		",
+		shortcut = "SPC l",
+		action = "Telescope live_grep"
+	},
+	{
+		icon = " ",
+		desc = "Install new plugins		",
+		shortcut = "SPC p i",
+		action = "PlugInstall"
+	},
+	{
+		icon = " ",
+		desc = "Remove old plugins		",
+		shortcut = "SPC p c",
+		action = "PlugClean"
+	},
+	{
+		icon = "ﮮ ",
+		desc = "Update all plugins		",
+		shortcut = "SPC p u",
+		action = "PlugUpdate"
+	},
+	{
+		icon = "ﮮ ",
+		desc = "Update vim-plug			",
+		shortcut = "SPC p U",
+		action = "PlugUpgrade"
+	},
+	{
+		icon = " ",
+		desc = "Clear swap files		",
+		shortcut = "SPC d s",
+		action = "!rm -r ~/.local/share/nvim/swap &"
+	},
+}
+
+db.custom_footer = {'żygląd'}
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup{
-	ensure_installed = {'bash', 'c', 'cpp', 'lua', 'vim', 'markdown', 'python'},
+	ensure_installed = {'bash', 'c', 'cpp', 'lua', 'vim', 'markdown'},
 	auto_install = true,
 
 	highlight = {
@@ -17,7 +108,7 @@ require'nvim-treesitter.configs'.setup{
 		disable = {"latex",},
 	},
 	autotag = {
-		enable = true;
+		enable = true,
 	}
 }
 
