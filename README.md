@@ -3,7 +3,7 @@
 ---
 
 # Reddit post
-https://reddit.com/y9wb5c
+https://www.reddit.com/z662vm
 
 # Dependencies
 - `autorandr`
