@@ -27,12 +27,19 @@ fi
 
 # Set X keymap to match language :) polska gurom
 setxkbmap pl &
-# Composite manager for them *rounded corners*
-picom -r 0 --inactive-dim 0.1 --corner-radius 4 --no-fading-openclose -b
+# Composite manager for them o p a c i t y
+picom -r 5 -o 0.5 -l 0 -t 0 -D 0 -m 1.0 -b
 # Notification daemon
 dunst & 
 
 # if dwm exits 0, restart -- this allows hot reloading of config.h
 # instead quit using `pkill dwm` or MODKEY-Ctrl-Q
 # shamelessly stolen from https://www.reddit.com/r/suckless/comments/fqmtoy/comment/flr8xm8/?utm_source=share&utm_medium=web2x&context=3
-while type dwm >/dev/null ; do dwm && continue || break ; done
+while type dwm >/dev/null; do
+	(sleep 1 && ~/startshit.sh) &
+	dwm && continue || break;
+done
+# while (( $? == 0 )); do
+# 	dwm
+# 	# dwm 2> ~/.dwm.log
+# done

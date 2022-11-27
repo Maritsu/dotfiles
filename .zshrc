@@ -23,10 +23,6 @@ setopt share_history hist_ignore_all_dups autocd chase_links
 unsetopt beep nomatch
 bindkey -v
 
-function checkexit() {
-	let foo=$?; if [[ $foo != 0 ]]; then if [ $foo == 139 ]; then echo "%BTHE EEPER%b "; else echo "$foo "; fi; fi
-}
-
 # OH-MY-ZSH OPTIONS
 export ZSH="$HOME/.oh-my-zsh"
 DISABLE_AUTO_TITLE="false"
@@ -36,6 +32,7 @@ plugins=(
 	z
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	zsh-vi-mode
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -43,8 +40,14 @@ source ~/.config/aliasrc ~/.config/pfetchrc
 alias sudo="doas"
 alias vzrc="v ~/.zshrc"
 alias rzrc="source ~/.zshrc"
-PRF=""
-PS1='%F{magenta}$(if [[ "$PRF" != "" ]]; then echo "[$PRF] "; fi)%f%F{blue}%B%n%b%f%F{cyan}@%m%f %F{yellow}%~%f
-%F{red}$(let foo=$?; if [[ $foo != 0 ]]; then if [ $foo == 139 ]; then echo "%BTHE EEPER%b "; else echo "$foo "; fi; fi)%f%(!.#.%%) '
 
 [ -d "/home/bit/.path" ] && export PATH="/home/bit/.local/bin:/home/bit/Apps:/home/bit/.path:$PATH"
+
+# Starship
+if [[ -f /usr/bin/starship ]]; then
+	source <(/usr/bin/starship init zsh --print-full-init)
+else
+	PRF=""
+	PS1='%F{magenta}$(if [[ "$PRF" != "" ]]; then echo "[$PRF] "; fi)%f%F{blue}%B%n%b%f%F{cyan}@%m%f %F{yellow}%~%f
+	%F{red}$(let foo=$?; if [[ $foo != 0 ]]; then if [ $foo == 139 ]; then echo "%BTHE EEPER%b "; else echo "$foo "; fi; fi)%f%(!.#.%%) '
+fi
