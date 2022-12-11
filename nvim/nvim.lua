@@ -13,90 +13,18 @@ require("transparent").setup({
 	}
 })
 
--- Dashboard
-local db = require("dashboard")
-db.custom_header = {
-    '',
-    '',
-    'NNNNNNNN        NNNNNNNNEEEEEEEEEEEEEEEEEEEEEE     OOOOOOOOO     VVVVVVVV           VVVVVVVVIIIIIIIIIIMMMMMMMM               MMMMMMMM',
-    'N:::::::N       N::::::NE::::::::::::::::::::E   OO:::::::::OO   V::::::V           V::::::VI::::::::IM:::::::M             M:::::::M',
-    'N::::::::N      N::::::NE::::::::::::::::::::E OO:::::::::::::OO V::::::V           V::::::VI::::::::IM::::::::M           M::::::::M',
-    'N:::::::::N     N::::::NEE::::::EEEEEEEEE::::EO:::::::OOO:::::::OV::::::V           V::::::VII::::::IIM:::::::::M         M:::::::::M',
-    'N::::::::::N    N::::::N  E:::::E       EEEEEEO::::::O   O::::::O V:::::V           V:::::V   I::::I  M::::::::::M       M::::::::::M',
-    'N:::::::::::N   N::::::N  E:::::E             O:::::O     O:::::O  V:::::V         V:::::V    I::::I  M:::::::::::M     M:::::::::::M',
-    'N:::::::N::::N  N::::::N  E::::::EEEEEEEEEE   O:::::O     O:::::O   V:::::V       V:::::V     I::::I  M:::::::M::::M   M::::M:::::::M',
-    'N::::::N N::::N N::::::N  E:::::::::::::::E   O:::::O     O:::::O    V:::::V     V:::::V      I::::I  M::::::M M::::M M::::M M::::::M',
-    'N::::::N  N::::N:::::::N  E:::::::::::::::E   O:::::O     O:::::O     V:::::V   V:::::V       I::::I  M::::::M  M::::M::::M  M::::::M',
-    'N::::::N   N:::::::::::N  E::::::EEEEEEEEEE   O:::::O     O:::::O      V:::::V V:::::V        I::::I  M::::::M   M:::::::M   M::::::M',
-    'N::::::N    N::::::::::N  E:::::E             O:::::O     O:::::O       V:::::V:::::V         I::::I  M::::::M    M:::::M    M::::::M',
-    'N::::::N     N:::::::::N  E:::::E       EEEEEEO::::::O   O::::::O        V:::::::::V          I::::I  M::::::M     MMMMM     M::::::M',
-    'N::::::N      N::::::::NEE::::::EEEEEEEE:::::EO:::::::OOO:::::::O         V:::::::V         II::::::IIM::::::M               M::::::M',
-    'N::::::N       N:::::::NE::::::::::::::::::::E OO:::::::::::::OO           V:::::V          I::::::::IM::::::M               M::::::M',
-    'N::::::N        N::::::NE::::::::::::::::::::E   OO:::::::::OO              V:::V           I::::::::IM::::::M               M::::::M',
-    'NNNNNNNN         NNNNNNNEEEEEEEEEEEEEEEEEEEEEE     OOOOOOOOO                 VVV            IIIIIIIIIIMMMMMMMM               MMMMMMMM',
-	'',
-	'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ac vestibulum neque. Fusce tristique velit orci, quis rhoncus tellus luctus.',
-    '',
-    '',
-}
-db.custom_center = {
-	{
-		icon = " ",
-		desc = "Edit configuration		",
-		shortcut = "SPC SPC e",
-		action = "e $MYVIMRC"
-	},
-		{
-		icon = " ",
-		desc = "Edit configuration (lua)		",
-		shortcut = "SPC SPC l",
-		actioc = "e ~/.config/nvim/nvim.lua"
-	},
-	{
-		icon = " ",
-		desc = "Find file			",
-		shortcut = "SPC f",
-		action = "Telescope find_files"
-	},
-	{
-		icon = " ",
-		desc = "Grep for content		",
-		shortcut = "SPC l",
-		action = "Telescope live_grep"
-	},
-	{
-		icon = " ",
-		desc = "Install new plugins		",
-		shortcut = "SPC p i",
-		action = "PlugInstall"
-	},
-	{
-		icon = " ",
-		desc = "Remove old plugins		",
-		shortcut = "SPC p c",
-		action = "PlugClean"
-	},
-	{
-		icon = "ﮮ ",
-		desc = "Update all plugins		",
-		shortcut = "SPC p u",
-		action = "PlugUpdate"
-	},
-	{
-		icon = "ﮮ ",
-		desc = "Update vim-plug			",
-		shortcut = "SPC p U",
-		action = "PlugUpgrade"
-	},
-	{
-		icon = " ",
-		desc = "Clear swap files		",
-		shortcut = "SPC d s",
-		action = "!rm -r ~/.local/share/nvim/swap &"
-	},
-}
-
-db.custom_footer = {'żygląd'}
+-- Multiplayer
+vim.g.instant_username = "bit"
+vim.g.instant_cursor_hl_group_user1 = "Visual"
+vim.g.instant_cursor_hl_group_user2 = "Visual"
+vim.g.instant_cursor_hl_group_user3 = "Visual"
+vim.g.instant_cursor_hl_group_user4 = "Visual"
+vim.g.instant_cursor_hl_group_default = "Visual"
+vim.g.instant_name_hl_group_user1 = "markdownH1"
+vim.g.instant_name_hl_group_user2 = "markdownH1"
+vim.g.instant_name_hl_group_user3 = "markdownH1"
+vim.g.instant_name_hl_group_user4 = "markdownH1"
+vim.g.instant_name_hl_group_default = "markdownH1"
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup{

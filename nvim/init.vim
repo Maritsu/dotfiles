@@ -60,13 +60,16 @@ nnoremap <Leader>pu :PlugUpdate<CR>
 nnoremap <Leader>pU :PlugUpgrade<CR>
 
 call plug#begin()
-"Color scheme is kept locally in colors/ dir
+"Color scheme
 " Plug 'ajmwagar/vim-deus', {'as': 'deus'}
 Plug 'catppuccin/nvim', {'as': 'cap'}
 Plug 'xiyaowong/nvim-transparent'
 
-" Header
-Plug 'glepnir/dashboard-nvim'
+"Header
+" Plug 'glepnir/dashboard-nvim'
+
+" Multiplayer mode
+Plug 'jbyuki/instant.nvim'
 
 "Color highlighter
 Plug 'ap/vim-css-color'
@@ -170,7 +173,7 @@ endfunction
 
 filetype plugin indent on
 syntax enable
-let g:vimtex_view_method = 'xdg-open'
+let g:vimtex_view_method = 'general'
 let maplocalleader = " "
 
 "================================================================================"

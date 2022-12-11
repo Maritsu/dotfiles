@@ -25,7 +25,10 @@ alias untar="tar -xvf"
 alias dh="du -sh"
 alias wm="doas wifi-menu"
 alias sn="shutdown now"
-alias sx="startx"
+alias sx="startx" #should honestly be in .profile
+alias mkdir="mkdir -p"
+alias clip="xclip -selection clipboard"
+alias paste="clip -o"
 
 # CONFIG EDIT + RELOAD
 alias rbrc="source ~/.bashrc"
@@ -42,10 +45,8 @@ alias mci="doas make clean install"
 alias rcdwm="$HOME/.src/wm/compiledwm.sh"
 
 # I USE ARCH BTW
-alias lolcat="lolcat -t" # enforce true color
-alias neofetch="pfetch"
-alias btw="pfetch"
-alias ltw="pfetch | lolcat"
+alias btw="neofetch"
+alias gtw="gnomefetch"
 
 # TYPOS + CLEARING
 alias claer="clear"
