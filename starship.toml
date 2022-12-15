@@ -1,8 +1,8 @@
 format = """
-$username$hostname\
+${env_var.PRF}$username$hostname\
 $directory\
 $git_branch$git_commmit$git_state$git_metrics
-${custom.exitcode}$character
+$status$character
 """
 add_newline = false
 
@@ -58,6 +58,9 @@ only_nonzero_diffs = true
 format = "([+$added]($added_style) )([-$deleted]($deleted_style) )"
 disabled = false
 
-[custom.exitcode]
-command = "echo $?"
-format = "[$output](bold red) "
+[env_var.PRF]
+format = '(\([$env_value]\) )[bold purple]'
+
+[status]
+format = "[$status](red) "
+disabled = false

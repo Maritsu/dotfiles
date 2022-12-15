@@ -33,7 +33,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 6x36
+    offset = 8x36
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -90,7 +90,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 0
+    frame_width = 1
 
     # Defines color of the frame around the notification window.
     frame_color = "#89b4fa"
@@ -99,7 +99,7 @@
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
-    gap_size = 2
+    gap_size = 0
 
     # Define a color for the separator.
     # possible values are:
@@ -248,7 +248,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 4
+    corner_radius = 0
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -312,7 +312,8 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
 	background = "#1d1d2d"
-	foreground = "#cdd6f4"
+	foreground = "#8d96b4"
+	frame_color = "#6994da"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
