@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # SCREENSHOT SCRIPT
 # DEPS: scrot, xclip, dunstify

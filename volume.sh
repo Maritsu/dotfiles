@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 value=$1
 device=$(pamixer --get-default-sink)
