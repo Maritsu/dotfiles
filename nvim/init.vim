@@ -175,6 +175,7 @@ filetype plugin indent on
 syntax enable
 let g:vimtex_view_method = 'general'
 let maplocalleader = " "
+noremap cne 
 
 "================================================================================"
 "Syntax highlighting fixes

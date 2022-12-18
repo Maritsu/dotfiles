@@ -28,7 +28,7 @@ vim.g.instant_name_hl_group_default = "markdownH1"
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup{
-	ensure_installed = {'bash', 'c', 'cpp', 'lua', 'vim', 'markdown'},
+	ensure_installed = {'bash', 'c', 'cpp', 'lua', 'vim', 'markdown', 'haskell'},
 	auto_install = true,
 
 	highlight = {
@@ -207,6 +207,9 @@ require('lint').linters_by_ft = {
 --     run = function() vim.fn["mkdp#util#install"]() end,
 -- })
 --
+
+-- RUNNER
+
 
 -- OI
 vim.keymap.set('n', '<leader>c', ':!g++ -O3 -static % -std=c++17 -o %:r<CR>')
