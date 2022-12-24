@@ -120,9 +120,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_z,      zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	// { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	// { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|Mod1Mask,              XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|Mod1Mask,              XK_c,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|Mod1Mask,              XK_m,      setlayout,      {.v = &layouts[4]} },
 	// { MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	// { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -146,17 +146,17 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_q,      spawn,          {.v = killcmd } },
 	{ MODKEY|ShiftMask,	 	        XK_w,      spawn,          SHCMD("polybar-msg cmd restart") },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("$HOME/.src/wm/screenshot.sh") },
-	{ XK_ANY_MOD,					XK_VolUp,  spawn,		   SHCMD("$HOME/.src/wm/volume.sh 5") },	// Decrease vol by 5%
-	{ XK_ANY_MOD,					XK_VolDown,spawn,		   SHCMD("$HOME/.src/wm/volume.sh -5") },	// Increase vol by 5%
-	{ XK_ANY_MOD,					XK_VolM,   spawn,          SHCMD("$HOME/.src/wm/volume.sh 0") },	// Toggle mute
-	{ XK_ANY_MOD,					XK_BrUp,   spawn,		   SHCMD("$HOME/.src/wm/bright.sh 5%+") },	// Increase brightness by 5%
-	{ XK_ANY_MOD,					XK_BrDown, spawn,		   SHCMD("$HOME/.src/wm/bright.sh 5%-") },	// Decrease brightness by 5%
-	{ XK_ANY_MOD,					XK_AuPlay, spawn,		   SHCMD("playerctl play-pause") },
-	{ XK_ANY_MOD,					XK_AuStop, spawn,		   SHCMD("playerctl stop") },
-	{ XK_ANY_MOD,					XK_AuPrev, spawn,		   SHCMD("playerctl previous") },
-	{ XK_ANY_MOD,					XK_AuNext, spawn,		   SHCMD("playerctl next") },
-	{ MODKEY,						XK_d,	   spawn,		   SHCMD("dunstctl set-paused toggle") },	// Toggle DND mode
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("$HOME/src/wm/screenshot.sh") },
+	{ XK_ANY_MOD,					XK_VolUp,  spawn,		   SHCMD("$HOME/src/wm/volume.sh 5") },	// Decrease vol by 5%
+	{ XK_ANY_MOD,					XK_VolDown,spawn,		   SHCMD("$HOME/src/wm/volume.sh -5") },	// Increase vol by 5%
+	{ XK_ANY_MOD,					XK_VolM,   spawn,                  SHCMD("$HOME/src/wm/volume.sh 0") },	// Toggle mute
+	{ XK_ANY_MOD,					XK_BrUp,   spawn,		   SHCMD("$HOME/src/wm/bright.sh 5%+") },	// Increase brightness by 5%
+	{ XK_ANY_MOD,					XK_BrDown, spawn,		   SHCMD("$HOME/src/wm/bright.sh 5%-") },	// Decrease brightness by 5%
+	{ XK_ANY_MOD,					XK_AuPlay, spawn,		   SHCMD("$HOME/src/wm/player.sh play-pause") },
+	{ XK_ANY_MOD,					XK_AuStop, spawn,		   SHCMD("$HOME/src/wm/player.sh stop") },
+	{ XK_ANY_MOD,					XK_AuPrev, spawn,		   SHCMD("$HOME/src/wm/player.sh previous") },
+	{ XK_ANY_MOD,					XK_AuNext, spawn,		   SHCMD("$HOME/src/wm/player.sh next") },
+	{ MODKEY,					XK_d,	   spawn,		   SHCMD("dunstctl set-paused toggle") },	// Toggle DND mode
 };
 
 /* button definitions */
