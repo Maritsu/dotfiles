@@ -161,6 +161,7 @@ static Key keys[] = {
 	//Additional controls for keyboard without multimedia keys
 	{ MODKEY|Mod1Mask,		XK_period, spawn,		   SHCMD("$HOME/src/wm/volume.sh 5") },		// Decrease vol by 5%
 	{ MODKEY|Mod1Mask,		XK_comma,  spawn,		   SHCMD("$HOME/src/wm/volume.sh -5") },	// Increase vol by 5%
+	{ MODKEY|Mod1Mask,		XK_m,      spawn,                  SHCMD("$HOME/src/wm/volume.sh 0") },		// Toggle mute
 	{ MODKEY|Mod1Mask,		XK_l,      spawn,		   SHCMD("$HOME/src/wm/bright.sh 5%+") },	// Increase brightness by 5%
 	{ MODKEY|Mod1Mask,		XK_k,      spawn,		   SHCMD("$HOME/src/wm/bright.sh 5%-") },	// Decrease brightness by 5%
 	{ MODKEY|Mod1Mask,		XK_p,	   spawn,		   SHCMD("$HOME/src/wm/player.sh play-pause") },
