@@ -168,6 +168,8 @@ static Key keys[] = {
 	{ MODKEY|Mod1Mask,		XK_o,	   spawn,		   SHCMD("$HOME/src/wm/player.sh stop") },
 	{ MODKEY|Mod1Mask,		XK_minus,  spawn,		   SHCMD("$HOME/src/wm/player.sh previous") },
 	{ MODKEY|Mod1Mask,		XK_equal,  spawn,		   SHCMD("$HOME/src/wm/player.sh next") },
+	{ MODKEY|Mod1Mask,		XK_b,	   spawn,		   SHCMD("$HOME/src/wm/evenvol.sh down")},
+	{ MODKEY|Mod1Mask,		XK_n,	   spawn,		   SHCMD("$HOME/src/wm/evenvol.sh up")},
 };
 
 /* button definitions */
