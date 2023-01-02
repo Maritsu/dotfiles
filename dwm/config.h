@@ -107,7 +107,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	// { MODKEY,                       XK_b,      togglebar,      {0} },
+	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	// { MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -146,7 +146,9 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_q,      spawn,          {.v = killcmd } },
 	{ MODKEY|ShiftMask,	 	XK_w,      spawn,          SHCMD("polybar-msg cmd restart") },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = lockcmd } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          SHCMD("$HOME/src/wm/screenshot.sh") },
+	// { MODKEY|ControlMask,           XK_p,      spawn,          SHCMD("$HOME/src/wm/screenshot.sh 1") },
+	// { MODKEY|ControlMask|ShiftMask, XK_p,      spawn,          SHCMD("$HOME/src/wm/screenshot.sh 2") },
+	{ XK_ANY_MOD,	                XK_Print,  spawn,		   SHCMD("$HOME/src/wm/screenshot.sh") },
 	{ XK_ANY_MOD,			XK_VolUp,  spawn,		   SHCMD("$HOME/src/wm/volume.sh 5") },		// Decrease vol by 5%
 	{ XK_ANY_MOD,			XK_VolDown,spawn,		   SHCMD("$HOME/src/wm/volume.sh -5") },	// Increase vol by 5%
 	{ XK_ANY_MOD,			XK_VolM,   spawn,                  SHCMD("$HOME/src/wm/volume.sh 0") },		// Toggle mute
@@ -159,6 +161,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_d,	   spawn,		   SHCMD("dunstctl set-paused toggle") },	// Toggle DND mode
 
 	//Additional controls for keyboard without multimedia keys
+	{ MODKEY|ShiftMask,             XK_p,      spawn,		   SHCMD("$HOME/src/wm/screenshot.sh") },
 	{ MODKEY|Mod1Mask,		XK_period, spawn,		   SHCMD("$HOME/src/wm/volume.sh 5") },		// Decrease vol by 5%
 	{ MODKEY|Mod1Mask,		XK_comma,  spawn,		   SHCMD("$HOME/src/wm/volume.sh -5") },	// Increase vol by 5%
 	{ MODKEY|Mod1Mask,		XK_m,      spawn,                  SHCMD("$HOME/src/wm/volume.sh 0") },		// Toggle mute
