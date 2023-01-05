@@ -37,13 +37,28 @@ if [[ $exist -ne 0 ]]; then
   esac
 fi
 
+declare -A sensitivepkgs=([linux]=1 [grub]=1 [systemd]=1 [mkinitcpio]=1)
+availablesensitivepkgs=()
+linesprinted=0 # bogus binted
 while IFS= read -r line; do
   packagename=$(echo "$line" | cut -d" " -f1)
+  
+  sensitivea=""
+  sensitiveb=""
+  if [[ -n "${sensitivepkgs[$packagename]}" ]]; then
+    sensitivea="\e[0;34m"
+    sensitiveb="\e[m"
+    availablesensitivepkgs+="$packagename"
+  fi
+
   oldver=$(echo "$line" | cut -d" " -f2)
   newver=$(echo "$line" | cut -d" " -f4)
-  echo -e "$packagename \e[1;31m$oldver\e[m \e[0;30m->\e[m \e[1;32m$newver\e[m"
+  echo -e "$sensitivea$packagename$sensitiveb \e[1;31m$oldver\e[m \e[0;30m->\e[m \e[1;32m$newver\e[m"
+  ((linesprinted++))
 done <<< "$ul"
-echo -e "\e[0;36mTotal updates: \e[1;36m$(echo $ul | wc -l)"
+echo -e "\e[0;36mTotal updates: \e[1;36m$linesprinted\e[m"
+aspn=${#availablesensitivepkgs[@]}
+[[ $aspn -gt 0 ]] && echo -e "\e[0;34mSensitive packages: \e[1;34m$aspn\e[m"
 
 printf "\n\e[1;34m:: \e[1;37mDo you want to proceed? [Y/n] \e[m"
 read choice
