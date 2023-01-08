@@ -50,6 +50,10 @@ nnoremap <Leader><Leader>e :e $MYVIMRC<CR>
 nnoremap <Leader><Leader>l :e ~/.config/nvim/nvim.lua<CR>
 nnoremap <Leader>ds :!rm -r ~/.local/share/nvim/swap &<CR><CR>
 
+nnoremap tn :tabnew<CR>
+nnoremap tv :vs<CR>
+nnoremap th :split<CR>
+
 "================================================================================"
 "Plugins
 "================================================================================"
@@ -175,7 +179,10 @@ filetype plugin indent on
 syntax enable
 let g:vimtex_view_method = 'general'
 let maplocalleader = " "
-noremap cne 
+noremap sle <plug>(vimtex-env-surround-line)
+noremap sve <plug>(vimtex-env-surround-visual)
+noremap soe <plug>(vimtex-env-surround-operator)
+noremap nc <plug>(vimtex-cmd-create)
 
 "================================================================================"
 "Syntax highlighting fixes
