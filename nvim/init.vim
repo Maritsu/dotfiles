@@ -162,15 +162,15 @@ endfunction
 
 " Uncomment this block if you want transparency
 " Also look at extra files (GWgf)
-" let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-" let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-" let s:palette.inactive.middle = s:palette.normal.middle
-" let s:palette.tabline.middle = s:palette.normal.middle
-" let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-" let s:palette.normal.right = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-" let s:palette.inactive.right = s:palette.normal.right
-" let s:palette.tabline.right = s:palette.normal.right
-"
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+let s:palette.inactive.middle = s:palette.normal.middle
+let s:palette.tabline.middle = s:palette.normal.middle
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.right = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+let s:palette.inactive.right = s:palette.normal.right
+let s:palette.tabline.right = s:palette.normal.right
+
 "================================================================================"
 "VimTeX
 "================================================================================"
@@ -185,25 +185,18 @@ noremap soe <plug>(vimtex-env-surround-operator)
 noremap nc <plug>(vimtex-cmd-create)
 
 "================================================================================"
-"Syntax highlighting fixes
-"================================================================================"
-
-hi! def LineNr guifg=deusGreen
-hi! def LineNrAbove guifg=#7b7c7e
-hi! def link LineNrBelow LineNrAbove
-hi! EndOfBuffer guifg=bg
-
-" hi Normal guibg=none ctermbg=none
-" hi LineNr guibg=none ctermbg=none
-" hi Folded guibg=none ctermbg=none
-" hi NonText guibg=none ctermbg=none
-" hi SpecialKey guibg=none ctermbg=none
-" hi VertSplit guibg=none ctermbg=none
-" hi SignColumn guibg=none ctermbg=none
-" hi EndOfBuffer guibg=none ctermbg=none
-
-"================================================================================"
 "Extra files
 "================================================================================"
 
 luafile $HOME/.config/nvim/nvim.lua
+
+"================================================================================"
+"Syntax highlighting fixes
+"================================================================================"
+
+hi! def NvimTreeNormal guibg=none
+hi! def Todo guifg=Yellow
+
+" hi! def LineNr guifg=#b4befe
+" hi def link LineNrBelow LineNrAbove
+" hi EndOfBuffer guifg=bg

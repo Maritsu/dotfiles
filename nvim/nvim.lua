@@ -4,9 +4,10 @@ require('catppuccin').setup()
 vim.cmd[[Catppuccin mocha]]
 
 require("transparent").setup({
-	enable = false, -- Enable if you want to have transparency
+	enable = true, -- Enable if you want to have transparency
 	extra_groups = {
 		"all",
+		"CursorLine",
 		"LightlineLeft_normal_0_1",
 		"LightlineLeft_normal_0_right",
 		"LightlineLeft_normal_1",
@@ -181,6 +182,7 @@ local bufopts = {noremap=true, silent=true, buffer=bufnr}
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+vim.cmd[[autocmd Filetype help unmap K]]
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<Leader>sr', ":LspRestart<CR>")
