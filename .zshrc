@@ -31,19 +31,23 @@ plugins=(
 	sudo
 	z
 	zsh-autosuggestions
-	zsh-syntax-highlighting
 	zsh-vi-mode
+
+	# HAS TO BE SOURCED LAST
+	zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
 
+# ALIASES AND FILES
 source ~/.config/aliasrc ~/.config/pfetchrc
 alias sudo="doas"
 alias vzrc="v ~/.zshrc"
 alias rzrc="source ~/.zshrc"
 
+# PATH
 [ -d "/home/bit/.path" ] && export PATH="/home/bit/.local/bin:/home/bit/Apps:/home/bit/.path:$PATH"
 
-# Starship
+# STARSHIP
 if [[ -f /usr/bin/starship ]]; then
 	source <(/usr/bin/starship init zsh --print-full-init)
 else
@@ -51,3 +55,6 @@ else
 	PS1='%F{magenta}$(if [[ "$PRF" != "" ]]; then echo "[$PRF] "; fi)%f%F{blue}%B%n%b%f%F{cyan}@%m%f %F{yellow}%~%f
 	%F{red}$(let foo=$?; if [[ $foo != 0 ]]; then if [ $foo == 139 ]; then echo "%BTHE EEPER%b "; else echo "$foo "; fi; fi)%f%(!.#.%%) '
 fi
+
+alias ezsh="source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+ezsh
